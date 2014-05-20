@@ -1,0 +1,54 @@
+//
+//  Prefix header
+//
+//  The contents of this file are implicitly included at the beginning of every source file.
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_3_0
+#warning "This project uses features only available in iOS SDK 3.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+    #import <CoreData/CoreData.h>
+    //#import "source/ZTabBarViewController.h"
+    //#import "DDMenuController.h"
+    //#import <QuartzCore/QuartzCore.h>
+    #import "ZTableViewController.h"
+    #import "ASIHTTPRequest.h"
+    #import "ASIDownloadCache.h"
+    #import "SDWebImage/UIImageView+WebCache.h"
+    #import "LeveyTabBarController.h"
+    //#import "BPush.h"
+    #import "MJRefresh.h"
+
+    #define IsIOS7 ([[[UIDevice currentDevice] systemVersion] floatValue] >=7.0 ? YES : NO)
+    #define IOS_WIDTH ([UIScreen mainScreen].bounds.size.width)
+    #define IOS_HEIGHT ([UIScreen mainScreen].bounds.size.height)
+    #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+    //首页接口
+    static NSString * const  INDEX_URL = @"http://www.dota2v.com/interface/index.php";
+
+    static NSString * const  HOT_LIST  =  @"http://www.dota2v.com/interface/video/top.php";
+
+    //视频播放页
+    static NSString * const  VIDEO_PAGE_URL  =   @"http://www.dota2v.com/interface/video/detail.php?id=";
+
+    //英雄列表页hero_list  http://www.dota2v.com/interface/video/get_all_hero.php
+    static NSString * const  HERO_LIST_URL  =  @"http://www.dota2v.com/interface/video/get_all_hero.php";
+
+
+    //视频详细页
+    static NSString * const DETAIL_URL = @"http://www.dota2v.com/interface/video/get_detail_by_id.php?id=";
+
+    //根据分类ID获取列表
+    static NSString * const GET_LIST_BY_TYPE = @"http://www.dota2v.com/interface/video/get_list_by_type.php?type_id=#classid#&p=#page#";
+
+    //根据英雄ID获取视频列表
+    static NSString * const GET_LIST_BY_HEROID = @"http://www.dota2v.com/interface/video/get_list_by_hero.php?job_id=#classid#";
+
+#endif
+
