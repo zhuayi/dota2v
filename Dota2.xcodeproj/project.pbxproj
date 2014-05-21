@@ -194,6 +194,8 @@
 		38D69AF01922681500265744 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38D69AEF1922681500265744 /* CFNetwork.framework */; };
 		38D69AF21922681C00265744 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38D69AF11922681C00265744 /* SystemConfiguration.framework */; };
 		38D69AF41922682300265744 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38D69AF31922682300265744 /* MobileCoreServices.framework */; };
+		38EDF496192CDCA000F761B5 /* um_no_network.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EDF494192CDCA000F761B5 /* um_no_network.png */; };
+		38EDF497192CDCA000F761B5 /* um_nonetwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EDF495192CDCA000F761B5 /* um_nonetwork@2x.png */; };
 		38F3581F192C506E00AAC5FE /* player_drag.png in Resources */ = {isa = PBXBuildFile; fileRef = 38F3581D192C506E00AAC5FE /* player_drag.png */; };
 		38F35820192C506E00AAC5FE /* player_drag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38F3581E192C506E00AAC5FE /* player_drag@2x.png */; };
 		38F8B9D1192BAC8400F6EEE4 /* libUMAppNetwork_3.5.6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38F8B9C7192BAC8400F6EEE4 /* libUMAppNetwork_3.5.6.a */; };
@@ -462,6 +464,8 @@
 		38D69AF11922681C00265744 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		38D69AF31922682300265744 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		38D69AF51922683400265744 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
+		38EDF494192CDCA000F761B5 /* um_no_network.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = um_no_network.png; path = UMUFP.bundle/um_no_network.png; sourceTree = "<group>"; };
+		38EDF495192CDCA000F761B5 /* um_nonetwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "um_nonetwork@2x.png"; path = "UMUFP.bundle/um_nonetwork@2x.png"; sourceTree = "<group>"; };
 		38F3581D192C506E00AAC5FE /* player_drag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_drag.png; sourceTree = "<group>"; };
 		38F3581E192C506E00AAC5FE /* player_drag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "player_drag@2x.png"; sourceTree = "<group>"; };
 		38F8B9C7192BAC8400F6EEE4 /* libUMAppNetwork_3.5.6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMAppNetwork_3.5.6.a; sourceTree = "<group>"; };
@@ -650,6 +654,8 @@
 		380EE640191FCD5D003B5B00 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				38EDF494192CDCA000F761B5 /* um_no_network.png */,
+				38EDF495192CDCA000F761B5 /* um_nonetwork@2x.png */,
 				38F3581D192C506E00AAC5FE /* player_drag.png */,
 				38F3581E192C506E00AAC5FE /* player_drag@2x.png */,
 				387ACDB7192A6170001E928A /* categoty */,
@@ -1117,6 +1123,7 @@
 				386AFA861925C02000B86B53 /* grayArrow@2x.png in Resources */,
 				38C6E62D19210974003E3394 /* hometop@2x.png in Resources */,
 				38B5B7D119233450003A1730 /* preview_arrowleft_icon.png in Resources */,
+				38EDF496192CDCA000F761B5 /* um_no_network.png in Resources */,
 				386AFA801925C02000B86B53 /* blackArrow.png in Resources */,
 				387ACDB3192A5406001E928A /* home_mine_selected@2x.png in Resources */,
 				381D5C8F192280260098C9CD /* placeholder@2x.png in Resources */,
@@ -1136,6 +1143,7 @@
 				38F3581F192C506E00AAC5FE /* player_drag.png in Resources */,
 				3883BF7D192A102500561683 /* Icon-Small@2x.png in Resources */,
 				3883BF87192A28D900561683 /* group_audio_back_pressed@2x.png in Resources */,
+				38EDF497192CDCA000F761B5 /* um_nonetwork@2x.png in Resources */,
 				3855CACB192782FA0019187E /* player_play.png in Resources */,
 				3818B65819249EA800CABFB2 /* femalecodertocat@2x.png in Resources */,
 				3863097419275F650079A570 /* about@2x.png in Resources */,

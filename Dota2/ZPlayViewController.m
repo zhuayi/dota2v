@@ -289,7 +289,7 @@
     [_activityIndicator startAnimating];
     if(_videoPath)
     {
-    //_videoPath = @"http://v.youku.com/player/getRealM3U8/vid/XNzEzMTA1OTA4/type/video.m3u8";
+        //_videoPath = @"http://v.youku.com/player/getRealM3U8/vid/XNzEzMTA1OTA4/type/video.m3u8";
         //播放时不要锁屏
         [UIApplication sharedApplication].idleTimerDisabled = YES;
         videoURL = [NSURL URLWithString:_videoPath];

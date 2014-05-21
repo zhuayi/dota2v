@@ -23,9 +23,6 @@
         //self.tableView.backgroundColor = [UIColor colorWithRed:255/255.0f  green:255/255.0f  blue:255/255.0f  alpha:1];
         
         self.title = @"首页";
-
-        
-   
     }
     return self;
 }
@@ -36,7 +33,8 @@
     
     //下拉刷新
     [self addHeaderReload:self.tableView delegate:self];
-    [homeData getHomeTbaleList:INDEX_URL delegate:self];
+
+    [self http_Async:INDEX_URL];
     
     self.navigationItem.leftBarButtonItem.customView.hidden = YES;
     
@@ -45,42 +43,30 @@
 
 - (void) doneloadingReloadTableData
 {
-    [homeData getHomeTbaleList:INDEX_URL delegate:self];
+    [self http_Async:INDEX_URL];
 }
 
 - (void) viewWillAppear:(BOOL)animated
 {
-    
     //取数据
-    
     [self.leveyTabBarController hidesTabBar:NO animated:NO];
-    //self.navigationItem.hidesBackButton = YES;
-    //self.navigationItem.backBarButtonItem
 }
 
-
-- ( void )requestFinished:( ASIHTTPRequest *)request
+-(void) http_result : (NSString * )http_result
 {
-    
-    NSError *error ;
-    NSData *responseData = [request responseData];
-    NSDictionary *weatherDic = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:&error];
-    
-    NSLog(@"weatherDic === %@",error);
+    NSDictionary * data = [self get_dict_by_strings:http_result];
     _list = [[NSMutableArray alloc] initWithObjects:[[NSArray alloc] initWithObjects:@"幻灯片", nil],
                              [[NSArray alloc] initWithObjects:@"最近更新", nil],
-                             [weatherDic objectForKey:@"new_video_list"],
+                             [data objectForKey:@"new_video_list"],
                              [[NSArray alloc] initWithObjects:@"精彩集锦", nil],
-                             [weatherDic objectForKey:@"jijin_index_list"],
+                             [data objectForKey:@"jijin_index_list"],
                              [[NSArray alloc] initWithObjects:@"英雄视频", nil],
-                             [weatherDic objectForKey:@"hero_list"],
+                             [data objectForKey:@"hero_list"],
                              [[NSArray alloc] initWithObjects:@"知名解说", nil],
-                             [weatherDic objectForKey:@"jieshuo_video_list"],
+                             [data objectForKey:@"jieshuo_video_list"],
                              [[NSArray alloc] initWithObjects:@"比赛视频", nil],
-                             [weatherDic objectForKey:@"bisai_index_list"],
+                             [data objectForKey:@"bisai_index_list"],
                              nil];
-    
-    [self removeLoadingMaskView];
     [self.tableView reloadData];
 }
 

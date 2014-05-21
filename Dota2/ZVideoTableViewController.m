@@ -62,22 +62,30 @@
 
 - (void)back
 {
-    //[self destroyView];
     [playbox removePlayViewbox];
-    //[self willPlay];
-    //[self.navigationController popViewControllerAnimated:YES];
-    
 }
 
 //即将播放,加载远程信息
 - (void) willPlay
 {
     NSString * newid = [NSString stringWithFormat:@"%d", _vid];
-   // videoPath = [VIDEO_PAGE_URL stringByAppendingString:newid];
     DetailID = [DETAIL_URL stringByAppendingString:newid];
-    [homeData getHomeTbaleList:DetailID delegate:self];
+    
+    [self http_Async:DetailID];
 }
 
+- (void) http_result:(NSString *)responseString
+{
+    NSDictionary * weatherDic = [self get_dict_by_strings:responseString];
+    self.title = [[weatherDic objectForKey:@"item"] objectForKey:@"video_title"];
+    _list = [weatherDic objectForKey:@"top_video_list"];
+    
+    [self.tableView reloadSections:[[NSIndexSet alloc]initWithIndex:1] withRowAnimation:UITableViewRowAnimationFade];
+    playbox.videoPath = [[weatherDic objectForKey:@"item"] objectForKey:@"video_url"];
+    
+    [playbox play_Video];
+
+}
 
 //- (void)viewWillAppear
 -(void)viewWillAppear:(BOOL)animated
@@ -92,34 +100,6 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
     [self.leveyTabBarController hidesTabBar:NO animated:YES];
-}
-
-
-//as回调
-- ( void )requestFinished:( ASIHTTPRequest *)request
-{
-    
-    NSError *error ;
-    NSData *responseData = [request responseData];
-    NSDictionary *weatherDic = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:&error];
-    
-    NSLog(@"title === %@",weatherDic);
-    self.title = [[weatherDic objectForKey:@"item"] objectForKey:@"video_title"];
-    _list = [weatherDic objectForKey:@"top_video_list"];
-    
-    [self.tableView reloadSections:[[NSIndexSet alloc]initWithIndex:1] withRowAnimation:UITableViewRowAnimationFade];
-    playbox.videoPath = [[weatherDic objectForKey:@"item"] objectForKey:@"video_url"];
-    
-    [self removeLoadingMaskView];
-    
-    [playbox play_Video];
-    
-    
-    //重新加载第一行
-    //NSIndexPath *indexPath_1=[NSIndexPath indexPathForRow:0 inSection:0];
-    //NSArray *indexArray=[NSArray arrayWithObject:indexPath_1];
-    //[self.tableView reloadRowsAtIndexPaths:indexArray withRowAnimation:UITableViewRowAnimationAutomatic];
-    
 }
 
 

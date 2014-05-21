@@ -33,8 +33,7 @@
 
 - (void) viewWillAppear:(BOOL)animated
 {
-    
-    [homeData getHomeTbaleList:HERO_LIST_URL delegate:self];
+    [self http_Async:HERO_LIST_URL];
     
 }
 
@@ -44,19 +43,12 @@
     self.navigationItem.leftBarButtonItem.customView.hidden = YES;
 }
 
-
-- ( void )requestFinished:( ASIHTTPRequest *)request
+- (void) http_result:(NSString *)http_result
 {
+    NSDictionary * weatherDic = [self get_dict_by_strings:http_result];
     
-    NSError *error ;
-    NSData *responseData = [request responseData];
-    NSDictionary *weatherDic = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:&error];
-    [self removeLoadingMaskView];
     _list = [weatherDic objectForKey:@"hero_list"];
     _hero_type = [weatherDic objectForKey:@"hero_type"];
-    NSLog(@"_hero_type === %@",_hero_type);
-    //_filter = [weatherDic objectForKey:@"filter"];
-    NSLog(@"_list === %@",_list);
     
     //设置组
     _hero_list = [NSMutableArray arrayWithCapacity:6];

@@ -84,12 +84,12 @@
 {
     page++;
     
-    [homeData getHomeTbaleList:[self getUrl] delegate:self];
+    [self http_Async:[self getUrl]];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [homeData getHomeTbaleList:[self getUrl] delegate:self];
+    [self http_Async:[self getUrl]];
 }
 
 //- (void)viewWillAppear
@@ -103,13 +103,10 @@
     [self.leveyTabBarController hidesTabBar:NO animated:YES];
 }
 
-- ( void )requestFinished:( ASIHTTPRequest *)request
+- (void) http_result:(NSString *)responseString
 {
+    NSDictionary * weatherDic = [self get_dict_by_strings:responseString];
     
-    NSError *error ;
-    NSData *responseData = [request responseData];
-    NSDictionary *weatherDic = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:&error];
-   [self removeLoadingMaskView];
     dispatch_async(dispatch_get_main_queue(), ^{
         NSString * classid = [NSString stringWithFormat:@"%d", _ClassId];
         self.title  = [[[weatherDic objectForKey:@"video_type"] objectForKey:classid] objectForKey:@"name"];
@@ -129,17 +126,14 @@
             }
             
         }
-
+        
         for (NSObject * object in [weatherDic objectForKey:@"list"])
         {
             [_list addObject:object];
-            //NSLog(@"object === %@",_list);
         }
-        
-        //_list = [weatherDic objectForKey:@"list"];
+
         [self.tableView reloadData];
     });
-
 }
 
 

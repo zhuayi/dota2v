@@ -32,6 +32,7 @@
     UIView *_mLoadingWaitView;
     UILabel *_mLoadingStatusLabel;
     UIActivityIndicatorView *_mLoadingActivityIndicator;
+    UIImageView *_mNoNetworkImageView;
     
 }
 //- (id <BaseControllerDelegate>) baseControllerDelegate;
@@ -45,5 +46,11 @@
 - (void)addFootReload : (UITableView * )tableView delegate : (id) delegate;
 
 //*****loding加载
+- (void)http_Async : (NSString *) url;
 - (void)removeLoadingMaskView;
+- (void)loadDataFailed;
+- (void)http_result : (NSString *) responseString;
+//字符串转字典
+- (NSDictionary *) get_dict_by_strings: (NSString *) strings;
+@property(nonatomic,strong) NSString * responseString;
 @end

@@ -34,7 +34,45 @@
     return self;
 }
 
-//***********loding加载
+//**********************ASIHTTPRequest  start
+- (void)http_Async : (NSString *) url
+{
+    [self setupLoadingWaitView];
+    NSLog(@"url === %@",url);
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL :[ NSURL URLWithString : url]];
+    [request setDelegate : self];
+    
+    [request startAsynchronous];
+}
+
+- (void)requestFailed:(ASIHTTPRequest *)request
+{
+    NSError *error = [request error];
+    
+    if (error)
+    {
+        NSLog(@"error === %@",error);
+        [self loadDataFailed];
+    }
+}
+- ( void )requestFinished:( ASIHTTPRequest *)request
+{
+
+    self.responseString = [request responseString];
+    [self http_result:self.responseString];
+
+    [self removeLoadingMaskView];
+}
+
+//字符串转字典
+- (NSDictionary *) get_dict_by_strings: (NSString *) strings
+{
+    NSError *error ;
+    NSData * nsdata = [strings dataUsingEncoding:NSUTF8StringEncoding];
+    return [NSJSONSerialization JSONObjectWithData:nsdata options:NSJSONReadingMutableLeaves error:&error];
+}
+
+//**********************ASIHTTPRequest  loding start
 #pragma mark - View lifecycle
 
 - (void)setupLoadingWaitView
@@ -72,6 +110,28 @@
     }
 }
 
+- (void)loadDataFailed {
+    
+    _mLoadingActivityIndicator.hidden = YES;
+    
+    if (!_mNoNetworkImageView)
+    {
+        UIImage *image = [UIImage imageNamed:@"um_no_network"];
+        CGSize imageSize = image.size;
+        _mNoNetworkImageView = [[UIImageView alloc] initWithFrame:CGRectMake((_mLoadingWaitView.bounds.size.width - imageSize.width) / 2, 80, imageSize.width, imageSize.height)];
+        _mNoNetworkImageView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+        _mNoNetworkImageView.image = image;
+    }
+    
+    if (![_mNoNetworkImageView superview])
+    {
+        [_mLoadingWaitView addSubview:_mNoNetworkImageView];
+    }
+    
+    _mLoadingStatusLabel.text = @"抱歉，网络连接不畅，请稍后再试！";
+}
+//**********************ASIHTTPRequest  end
+
 
 //清除UITableView底部多余的分割线
 - (void)setExtraCellLineHidden: (UITableView *)tableView
@@ -86,7 +146,7 @@
 {
     [super viewDidLoad];
     
-    [self setupLoadingWaitView];
+    
     
     float navigation_height;
     

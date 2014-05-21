@@ -13,21 +13,6 @@
 @implementation ZModelHome
 
 
-
-//************ ASIHTTPRequest 设置
-- (void)getHomeTbaleList : (NSString *) url delegate : (id) delegatea
-{
-    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL :[ NSURL URLWithString : url]];
-    [request setDelegate : delegatea];
-    
-    [request startAsynchronous];
-}
-
-//************ ASIHTTPRequest end
-
-
-
-
 - (void)play:(UITapGestureRecognizer *)gesture
 {
     ZVideoTableViewController * Video = [[ZVideoTableViewController alloc] init];
