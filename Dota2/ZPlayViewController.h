@@ -39,6 +39,7 @@
 @property (nonatomic, retain) UIButton * full;
 @property (nonatomic, strong) NSString* videoPath;
 @property (nonatomic, strong) NSTimer* settimeout;
+@property (nonatomic, strong) UISlider * slider;
 -(void) play_Video;
 - (void) full:(UIButton *) button;
 @property(nonatomic,strong) id tableviewDelegate;

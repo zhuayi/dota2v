@@ -145,13 +145,13 @@
     
     
     //******友盟测试设备 start
-    Class cls = NSClassFromString(@"UMANUtil");
-    SEL deviceIDSelector = @selector(openUDIDString);
-    NSString *deviceID = nil;
-    if(cls && [cls respondsToSelector:deviceIDSelector]){
-        deviceID = [cls performSelector:deviceIDSelector];
-    }
-    NSLog(@"{\"oid\": \"%@\"}", deviceID);
+//    Class cls = NSClassFromString(@"UMANUtil");
+//    SEL deviceIDSelector = @selector(openUDIDString);
+//    NSString *deviceID = nil;
+//    if(cls && [cls respondsToSelector:deviceIDSelector]){
+//        deviceID = [cls performSelector:deviceIDSelector];
+//    }
+//    NSLog(@"{\"oid\": \"%@\"}", deviceID);
     //******友盟测试设备 end
     
     return YES;

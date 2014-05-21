@@ -101,11 +101,26 @@
     
     //播放时间
     curPosLbl = [[UILabel alloc] initWithFrame:CGRectMake(35, 8, 70, 20)];
+    //curPosLbl.backgroundColor = [UIColor yellowColor];
     curPosLbl.backgroundColor = [UIColor clearColor];
     curPosLbl.text = @"";
     curPosLbl.textColor = [UIColor whiteColor];
     curPosLbl.font = [UIFont systemFontOfSize:11.];
     [self.playstatbox addSubview:curPosLbl];
+    
+    //滑块
+    _slider = [[UISlider alloc] initWithFrame:CGRectMake(85, 1, 145, self.playstatbox.frame.size.height)];
+    _slider.backgroundColor = [UIColor clearColor];
+    _slider.minimumValue = 0;
+    _slider.maximumValue = 1;
+    if (IsIOS7)
+    {
+        [_slider setTintColor:UIColorFromRGB(0x67cb47)];
+    }
+    [_slider setThumbImage:[UIImage imageNamed:@"player_drag"] forState:UIControlStateHighlighted];
+    [_slider setThumbImage:[UIImage imageNamed:@"player_drag"] forState:UIControlStateNormal];
+    [_slider addTarget:self action:@selector(dragProgressSliderAction:) forControlEvents:UIControlEventValueChanged];
+    [self.playstatbox addSubview:_slider];
     
     //总播放时间
     fullPosLbl = [[UILabel alloc] initWithFrame:CGRectMake(self.playViewbox.frame.size.width - 40 - 20 - 30 , 8, 70, 20)];
@@ -156,8 +171,18 @@
         button.selected = NO;
         [mMPayer start];
     }
-    
 }
+
+//滑块滑动
+-(void)dragProgressSliderAction:(id)sender
+{
+	UISlider *sld = (UISlider *)sender;
+	[mMPayer seekTo:(long)(sld.value * mDuration)];
+    curPosLbl.text = [self timeToHumanString:(long)(sld.value * mDuration)];
+    //记录下播放时间
+    [self update_history];
+}
+
 //全屏
 - (void) full:(UIButton *) button
 {
@@ -182,6 +207,7 @@
             _full.frame = CGRectMake(self.playViewbox.frame.size.width - 40,0, 40, 35);
             fullPosLbl.frame = CGRectMake(self.playViewbox.frame.size.width - 40 - 20 - 30 , 8, 70, 20);
             _activityIndicator.center = self.playViewbox.center;
+            _slider.frame =  CGRectMake(85, 1, IOS_WIDTH - 175, self.playstatbox.frame.size.height);
             [[UIApplication sharedApplication] setStatusBarHidden: NO];
             button.selected = NO;
             [_tableviewDelegate PlayViewNoFull];
@@ -204,6 +230,7 @@
             _full.frame = CGRectMake(IOS_HEIGHT - 40,0, 40, 35);
             fullPosLbl.frame = CGRectMake(IOS_HEIGHT - 40 - 20 - 30 , 8, 70, 20);
             _activityIndicator.center = CGPointMake(IOS_HEIGHT/2,IOS_WIDTH/2);
+            _slider.frame =  CGRectMake(85, 1, IOS_HEIGHT - 175, self.playstatbox.frame.size.height);
             [[UIApplication sharedApplication] setStatusBarHidden: YES];
             [_tableviewDelegate PlayViewIsFull];
             button.selected = YES;
@@ -250,6 +277,7 @@
     
     [mMPayer unSetupPlayer];
 }
+
 - (void)dealloc
 {
 	[mMPayer unSetupPlayer];
@@ -340,6 +368,7 @@
 - (void) syncUIStatus
 {
     mCurPostion  = [mMPayer getCurrentPosition];
+    [self.slider setValue:(float)mCurPostion/mDuration];
     fullPosLbl.text = [self timeToHumanString:(long)(mDuration)];
     curPosLbl.text = [self timeToHumanString:(long)(mCurPostion)];
 }
