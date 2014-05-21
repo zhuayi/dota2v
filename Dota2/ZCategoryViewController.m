@@ -40,17 +40,10 @@
 
 - (void) viewWillAppear:(BOOL)animated
 {
-//    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"titlebar"] forBarMetrics:UIBarMetricsDefault];
-//    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-//                                                                     [UIColor colorWithRed:255 green:255 blue:255 alpha:1], UITextAttributeTextColor,
-//                                                                     [UIColor colorWithRed:255.f green:255 blue:255 alpha:1], UITextAttributeTextShadowColor,
-//                                                                     [NSValue valueWithUIOffset:UIOffsetMake(0, 0)], UITextAttributeTextShadowOffset,
-//                                                                     nil]];
-    
     category = [[NSArray alloc] initWithObjects:
                 [[NSArray alloc] initWithObjects:@"最近更新",@"0", nil],
-                [[NSArray alloc] initWithObjects:@"直播视频",@"999", nil],
-                [[NSArray alloc] initWithObjects:@"热门赛事",@"998", nil],
+                [[NSArray alloc] initWithObjects:@"直播视频",@"0", nil],
+                [[NSArray alloc] initWithObjects:@"热门赛事",@"0", nil],
                 [[NSArray alloc] initWithObjects:@"解说视频",@"1", nil],
                 [[NSArray alloc] initWithObjects:@"精彩集锦",@"2", nil],
                 [[NSArray alloc] initWithObjects:@"比赛视频",@"3", nil],
