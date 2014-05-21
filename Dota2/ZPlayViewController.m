@@ -67,6 +67,16 @@
     UITapGestureRecognizer * tapGesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(showMenu)];
     [self.playViewbox_click addGestureRecognizer:tapGesture];
     
+    //下载状态
+    bubbleMsgLbl = [[UILabel alloc] initWithFrame:CGRectMake(_activityIndicator.frame.origin.x - 25 , _activityIndicator.frame.origin.y, 100, 20)];
+    bubbleMsgLbl.backgroundColor = [UIColor clearColor];
+    bubbleMsgLbl.text = @"";
+    bubbleMsgLbl.textColor = [UIColor whiteColor];
+    bubbleMsgLbl.font = [UIFont systemFontOfSize:16.];
+    [self.playViewbox_click addSubview:bubbleMsgLbl];
+    
+    //[UILabel]
+    
     NSLog(@"self.playViewbox.frame.size.height === %f",self.playViewbox.frame.size.height);
     //增加状态条
     self.playstatbox = [[UIView alloc] initWithFrame:CGRectMake(0, self.playViewbox.frame.size.height - 35, self.playViewbox.frame.size.width, 35)];
@@ -84,7 +94,7 @@
     //播放按钮
     _play = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 35)];
     //_play.backgroundColor = [UIColor redColor];
-    //_play.tag = 109;
+    _play.tag = 109;
     //_play.imageEdgeInsets = UIEdgeInsetsMake(0, -20, 0, 0);
     [_play setImage:[UIImage imageNamed:@"player_pause"] forState:UIControlStateNormal];
     [_play setImage:[UIImage imageNamed:@"player_play"] forState:UIControlStateSelected];
@@ -208,6 +218,8 @@
             fullPosLbl.frame = CGRectMake(self.playViewbox.frame.size.width - 40 - 20 - 30 , 8, 70, 20);
             _activityIndicator.center = self.playViewbox.center;
             _slider.frame =  CGRectMake(85, 1, IOS_WIDTH - 175, self.playstatbox.frame.size.height);
+            bubbleMsgLbl.frame = CGRectMake(_activityIndicator.frame.origin.x - 25 , _activityIndicator.frame.origin.y, 100, 20);
+            
             [[UIApplication sharedApplication] setStatusBarHidden: NO];
             button.selected = NO;
             [_tableviewDelegate PlayViewNoFull];
@@ -231,6 +243,8 @@
             fullPosLbl.frame = CGRectMake(IOS_HEIGHT - 40 - 20 - 30 , 8, 70, 20);
             _activityIndicator.center = CGPointMake(IOS_HEIGHT/2,IOS_WIDTH/2);
             _slider.frame =  CGRectMake(85, 1, IOS_HEIGHT - 175, self.playstatbox.frame.size.height);
+            bubbleMsgLbl.frame = CGRectMake(_activityIndicator.frame.origin.x - 25 , _activityIndicator.frame.origin.y, 100, 20);
+            
             [[UIApplication sharedApplication] setStatusBarHidden: YES];
             [_tableviewDelegate PlayViewIsFull];
             button.selected = YES;
@@ -302,13 +316,17 @@
 //记录播放时间
 - (void) update_history
 {
-    mDuration  = [mMPayer getDuration];
-    long time = (long)(mCurPostion);
-    
-    [userinfo setInteger:time forKey:_videoPath];
-    [userinfo synchronize];
-    
-    NSLog(@"开始记录时间!!!%@",[self timeToHumanString:(long)([userinfo integerForKey:_videoPath])]);
+    BOOL isPlaying = [mMPayer isPlaying];
+    if (isPlaying)
+    {
+        mDuration  = [mMPayer getDuration];
+        long time = (long)(mCurPostion);
+        
+        [userinfo setInteger:time forKey:_videoPath];
+        [userinfo synchronize];
+        
+        NSLog(@"开始记录时间!!!%@",[self timeToHumanString:(long)([userinfo integerForKey:_videoPath])]);
+    }
 }
 
 //播放开始
@@ -333,18 +351,72 @@
                                                     selector:@selector(syncUIStatus)
                                                     userInfo:nil
                                                      repeats:YES];
+    
+
 }
+
 
 
 //播放结束
 - (void)mediaPlayer:(VMediaPlayer *)player playbackComplete:(id)arg
 {
-    [player reset];
+    [mMPayer unSetupPlayer];
 }
 
 - (void)mediaPlayer:(VMediaPlayer *)player error:(id)arg
 {
     NSLog(@"VMediaPlayer Error: %@", arg);
+}
+
+//缓冲开始
+- (void)mediaPlayer:(VMediaPlayer *)player bufferingStart:(id)arg
+{
+	//self.progressDragging = YES;
+	NSLog(@"NAL 2HBT &&&&&&&&&&&&&&&&.......&&&&&&&&&&&&&&&&&");
+    [player pause];
+    UIButton * button = (UIButton *)[self.playstatbox viewWithTag:109];
+    button.selected = YES;
+    bubbleMsgLbl.hidden = NO;
+}
+
+//缓冲中
+- (void)mediaPlayer:(VMediaPlayer *)player bufferingUpdate:(id)arg
+{
+//	if (!self.bubbleMsgLbl.hidden) {
+//		self.bubbleMsgLbl.text = [NSString stringWithFormat:@"Buffering... %d%%",
+//								  [((NSNumber *)arg) intValue]];
+//	}
+    bubbleMsgLbl.text = [NSString stringWithFormat:@"加载%d%%",[((NSNumber *)arg) intValue]];
+    NSLog(@"loding == %@",[NSString stringWithFormat:@"Buffering... %d%%",[((NSNumber *)arg) intValue]]);
+}
+
+//缓冲结束
+- (void)mediaPlayer:(VMediaPlayer *)player bufferingEnd:(id)arg
+{
+    UIButton * button = (UIButton *)[self.playstatbox viewWithTag:109];
+    button.selected = NO;
+    bubbleMsgLbl.hidden =  YES;
+	[player start];
+    //[self paste:_play];
+}
+
+- (void)mediaPlayer:(VMediaPlayer *)player seekComplete:(id)arg
+{
+    //is_write_time = YES;
+    NSLog(@"arg === %@",arg);
+}
+
+- (void)mediaPlayer:(VMediaPlayer *)player setupPlayerPreference:(id)arg
+{
+	// Set buffer size, default is 1024KB(1*1024*1024).
+    //	[player setBufferSize:256*1024];
+	[player setBufferSize:512*1024];
+    //	[player setAdaptiveStream:YES];
+    
+	[player setVideoQuality:VMVideoQualityHigh];
+    
+	//player.useCache = YES;
+	//[player setCacheDirectory:[self getCacheRootDirectory]];
 }
 
 -(NSString *)timeToHumanString:(unsigned long)ms
@@ -413,6 +485,17 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (NSString *)getCacheRootDirectory
+{
+	NSString *cache = [NSString stringWithFormat:@"%@/Library/Caches/MediasCaches", NSHomeDirectory()];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:cache]) {
+        [[NSFileManager defaultManager] createDirectoryAtPath:cache
+								  withIntermediateDirectories:YES
+												   attributes:nil
+														error:NULL];
+    }
+	return cache;
+}
 /*
 #pragma mark - Navigation
 

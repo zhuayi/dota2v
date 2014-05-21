@@ -21,12 +21,14 @@
 
     long   mCurPostion;//播放时长
     long   mDuration;//总时间
+    UILabel * bubbleMsgLbl; //loding状态
     UILabel * fullPosLbl; // 总时长控件
     UILabel * curPosLbl;//播放时长控件
     NSTimer            *mSyncSeekTimer;
     BOOL isShowMenu;
     NSURL * videoURL;
     NSUserDefaults * userinfo;
+    BOOL is_write_time;
 }
 
 //*****************Vitamio 播放器开始
@@ -35,7 +37,7 @@
 @property (nonatomic, retain) UIView    *playstatbox;
 @property (nonatomic, retain) UIView    *playbgbox;
 @property (nonatomic, retain) UIView    *playViewbox_click;
-@property (nonatomic, retain) UIButton * play;
+@property (nonatomic, strong) UIButton * play;
 @property (nonatomic, retain) UIButton * full;
 @property (nonatomic, strong) NSString* videoPath;
 @property (nonatomic, strong) NSTimer* settimeout;

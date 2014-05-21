@@ -146,8 +146,6 @@
 {
     [super viewDidLoad];
     
-    
-    
     float navigation_height;
     
     if (IsIOS7)
