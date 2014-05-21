@@ -34,7 +34,7 @@
     //下拉刷新
     [self addHeaderReload:self.tableView delegate:self];
 
-    [self http_Async:INDEX_URL];
+    
     
     self.navigationItem.leftBarButtonItem.customView.hidden = YES;
     
@@ -46,10 +46,15 @@
     [self http_Async:INDEX_URL];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self http_Async:INDEX_URL];
+}
 - (void) viewWillAppear:(BOOL)animated
 {
     //取数据
     [self.leveyTabBarController hidesTabBar:NO animated:NO];
+    
 }
 
 -(void) http_result : (NSString * )http_result

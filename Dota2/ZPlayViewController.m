@@ -34,17 +34,18 @@
     userinfo = [NSUserDefaults standardUserDefaults];
     
     
-    float navigation_height;
-    if (IsIOS7)
-    {
-        self.edgesForExtendedLayout = UIRectEdgeNone;
-        navigation_height = 64.f;
-    }
-    else
-    {
-        navigation_height = 44.f;
-    }
-    self.view.frame = CGRectMake(0, navigation_height, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - navigation_height);
+//    float navigation_height;
+//    if (IsIOS7)
+//    {
+//        self.edgesForExtendedLayout = UIRectEdgeNone;
+//        navigation_height = 64.f;
+//    }
+//    else
+//    {
+//        navigation_height = 64.f;
+//    }
+    //self.view.frame = CGRectMake(0, navigation_height, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - navigation_height);
+    NSLog(@"self.view.frame === %@",self.view);
     // Do any additional setup after loading the view.
     
     self.playViewbox = [[UIView alloc] initWithFrame:kBackviewDefaultRect];
@@ -77,13 +78,13 @@
     
     //[UILabel]
     
-    NSLog(@"self.playViewbox.frame.size.height === %f",self.playViewbox.frame.size.height);
+    
     //增加状态条
     self.playstatbox = [[UIView alloc] initWithFrame:CGRectMake(0, self.playViewbox.frame.size.height - 35, self.playViewbox.frame.size.width, 35)];
-    //self.playstatbox.backgroundColor = [UIColor colorWithWhite:1 alpha:0.6];
+    self.playstatbox.backgroundColor = [UIColor clearColor];
     self.playstatbox.autoresizingMask = UIViewAutoresizingNone;
     [self.playViewbox addSubview:self.playstatbox];
-    
+    NSLog(@"playstatbox === %@",self.playstatbox);
     //透明遮罩背景
     _playbgbox = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.playstatbox.frame.size.width, 35)];
     _playbgbox.backgroundColor = [UIColor blackColor];

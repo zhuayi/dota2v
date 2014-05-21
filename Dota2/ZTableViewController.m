@@ -77,29 +77,33 @@
 
 - (void)setupLoadingWaitView
 {
-    _mLoadingWaitView = [[UIView alloc] initWithFrame:self.view.bounds];
-    _mLoadingWaitView.backgroundColor = [UIColor colorWithRed:0.96 green:0.96 blue:0.96 alpha:1.0];
-    _mLoadingWaitView.autoresizesSubviews = YES;
-    _mLoadingWaitView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    
-    _mLoadingStatusLabel = [[UILabel alloc] initWithFrame:CGRectMake((self.view.bounds.size.width-300)/2, 210, 300, 21)];
-    _mLoadingStatusLabel.backgroundColor = [UIColor clearColor];
-    _mLoadingStatusLabel.textColor = [UIColor colorWithRed:0.41 green:0.41 blue:0.41 alpha:1.0];
-    _mLoadingStatusLabel.font = [UIFont systemFontOfSize:15.0f];
-    _mLoadingStatusLabel.text = @"正在加载数据，请稍等...";
-    _mLoadingStatusLabel.textAlignment = UITextAlignmentCenter;
-    _mLoadingStatusLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-    [_mLoadingWaitView addSubview:_mLoadingStatusLabel];
-    
-    _mLoadingActivityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    _mLoadingActivityIndicator.backgroundColor = [UIColor clearColor];
-    _mLoadingActivityIndicator.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    _mLoadingActivityIndicator.frame = CGRectMake((self.view.bounds.size.width-30)/2, 170, 30, 30);
-    [_mLoadingWaitView addSubview:_mLoadingActivityIndicator];
+    if (! _mLoadingWaitView)
+    {
+        _mLoadingWaitView = [[UIView alloc] initWithFrame:self.view.bounds];
+        _mLoadingWaitView.backgroundColor = [UIColor colorWithRed:0.96 green:0.96 blue:0.96 alpha:1.0];
+        _mLoadingWaitView.autoresizesSubviews = YES;
+        _mLoadingWaitView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        
+        _mLoadingStatusLabel = [[UILabel alloc] initWithFrame:CGRectMake((self.view.bounds.size.width-300)/2, 210, 300, 21)];
+        _mLoadingStatusLabel.backgroundColor = [UIColor clearColor];
+        _mLoadingStatusLabel.textColor = [UIColor colorWithRed:0.41 green:0.41 blue:0.41 alpha:1.0];
+        _mLoadingStatusLabel.font = [UIFont systemFontOfSize:15.0f];
+        _mLoadingStatusLabel.text = @"正在加载数据，请稍等...";
+        _mLoadingStatusLabel.textAlignment = UITextAlignmentCenter;
+        _mLoadingStatusLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+        [_mLoadingWaitView addSubview:_mLoadingStatusLabel];
+        
+        _mLoadingActivityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        _mLoadingActivityIndicator.backgroundColor = [UIColor clearColor];
+        _mLoadingActivityIndicator.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        _mLoadingActivityIndicator.frame = CGRectMake((self.view.bounds.size.width-30)/2, 170, 30, 30);
+        [_mLoadingWaitView addSubview:_mLoadingActivityIndicator];
+        [self.view insertSubview:_mLoadingWaitView aboveSubview:self.tableView];
+    }
     
     [_mLoadingActivityIndicator startAnimating];
     
-    [self.view insertSubview:_mLoadingWaitView aboveSubview:self.tableView];
+    
 }
 - (void)removeLoadingMaskView
 {

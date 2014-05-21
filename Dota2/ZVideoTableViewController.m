@@ -26,10 +26,7 @@
         //self.tableView.backgroundColor = [UIColor colorWithRed:232.0f/255.0f  green:232.0f/255.0f  blue:232.0f/255.0f  alpha:1];
  
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-        
-        //self.tableView.delegate = self;
-        
-        
+
     }
     return self;
 }
@@ -40,13 +37,17 @@
     [super viewDidLoad];
     
 
-
+    float navigation_height = 0;
+    if (!IsIOS7)
+    {
+        navigation_height = 84.f;
+    }
     playbox = [[ZPlayViewController alloc] init];
-    playbox.view.frame = CGRectMake(0, 0, IOS_WIDTH, 180);
+    playbox.view.frame = CGRectMake(0, navigation_height, IOS_WIDTH, 180);
     [playbox setTableviewDelegate:self];
-
     self.tableView.tableHeaderView = playbox.view;
-    NSLog(@"playbox.view == %@",self.tableView.tableHeaderView);
+  
+    NSLog(@"playbox.view == %@",self.view);
     //下拉刷新
     [self addHeaderReload:self.tableView delegate:self];
     
