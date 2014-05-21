@@ -51,7 +51,7 @@
     NSError *error ;
     NSData *responseData = [request responseData];
     NSDictionary *weatherDic = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:&error];
-
+    [self removeLoadingMaskView];
     _list = [weatherDic objectForKey:@"hero_list"];
     _hero_type = [weatherDic objectForKey:@"hero_type"];
     NSLog(@"_hero_type === %@",_hero_type);

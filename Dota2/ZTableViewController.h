@@ -28,6 +28,11 @@
     
     id<BaseControllerDelegate> _baseControllerDelegate;
     
+    //loding加载
+    UIView *_mLoadingWaitView;
+    UILabel *_mLoadingStatusLabel;
+    UIActivityIndicatorView *_mLoadingActivityIndicator;
+    
 }
 //- (id <BaseControllerDelegate>) baseControllerDelegate;
 
@@ -39,4 +44,6 @@
 - (void)addHeaderReload : (UITableView * )tableView delegate : (id) delegate;
 - (void)addFootReload : (UITableView * )tableView delegate : (id) delegate;
 
+//*****loding加载
+- (void)removeLoadingMaskView;
 @end

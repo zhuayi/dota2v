@@ -109,7 +109,7 @@
     NSError *error ;
     NSData *responseData = [request responseData];
     NSDictionary *weatherDic = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:&error];
-   
+   [self removeLoadingMaskView];
     dispatch_async(dispatch_get_main_queue(), ^{
         NSString * classid = [NSString stringWithFormat:@"%d", _ClassId];
         self.title  = [[[weatherDic objectForKey:@"video_type"] objectForKey:classid] objectForKey:@"name"];

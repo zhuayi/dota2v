@@ -109,6 +109,9 @@
     
     [self.tableView reloadSections:[[NSIndexSet alloc]initWithIndex:1] withRowAnimation:UITableViewRowAnimationFade];
     playbox.videoPath = [[weatherDic objectForKey:@"item"] objectForKey:@"video_url"];
+    
+    [self removeLoadingMaskView];
+    
     [playbox play_Video];
     
     

@@ -79,6 +79,8 @@
                              [[NSArray alloc] initWithObjects:@"比赛视频", nil],
                              [weatherDic objectForKey:@"bisai_index_list"],
                              nil];
+    
+    [self removeLoadingMaskView];
     [self.tableView reloadData];
 }
 
