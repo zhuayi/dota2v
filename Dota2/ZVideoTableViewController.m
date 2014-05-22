@@ -36,21 +36,6 @@
 {
     [super viewDidLoad];
     
-
-    float navigation_height = 0;
-    if (!IsIOS7)
-    {
-        navigation_height = 44.f;
-    }
-    playbox = [[ZPlayViewController alloc] init];
-    playbox.view.frame = CGRectMake(0, navigation_height, IOS_WIDTH, 180);
-    [playbox setTableviewDelegate:self];
-    self.tableView.tableHeaderView = playbox.view;
-  
-    NSLog(@"playbox.view == %@",self.view);
-    //下拉刷新
-    [self addHeaderReload:self.tableView delegate:self];
-    
     _baseControllerDelegate = self;
 }
 
@@ -93,6 +78,15 @@
 {
     [super viewWillAppear:animated];
     [self.leveyTabBarController hidesTabBar:YES animated:YES];
+        
+    playbox = [[ZPlayViewController alloc] init];
+    playbox.view.frame = CGRectMake(0, 0, IOS_WIDTH, 180);
+    [playbox setTableviewDelegate:self];
+    self.tableView.tableHeaderView = playbox.view;
+    
+    NSLog(@"playbox.view == %@",self.view);
+    //下拉刷新
+    [self addHeaderReload:self.tableView delegate:self];
     
     [self willPlay];
 
@@ -133,14 +127,12 @@
 - (void) PlayViewIsFull
 {
     self.tableView.tableHeaderView.frame = [UIScreen mainScreen].bounds;
-    //self.tableView.hidden = YES;
     self.navigationController.navigationBarHidden = YES;
     self.tableView.scrollEnabled = NO;
 }
 
 - (void) PlayViewNoFull
 {
-    //self.tableView.hidden = YES;
     self.navigationController.navigationBarHidden = NO;
     self.tableView.tableHeaderView.frame = CGRectMake(0, 0, 320, 180);
     NSLog(@"view === %@",self.view);

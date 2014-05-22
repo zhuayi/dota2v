@@ -13,7 +13,6 @@
 #import "ZFindTableViewController.h"
 #import "ZMoreTableViewController.h"
 #import "LeveyTabBarController.h"
-
 #import "ZPlayViewController.h"
 #import "EAIntroView.h"
 #import "BPush.h"
@@ -105,11 +104,6 @@
     {
         //self.window.frame =  CGRectMake(0,20,self.window.frame.size.width,self.window.frame.size.height-20);
     }
-
-    self.window.rootViewController = leveyTabBarController;
-    
-    [self.window makeKeyAndVisible];
-    
     
     //背景色和状态栏设置
     if (IsIOS7)
@@ -126,7 +120,10 @@
                                                            , nil]];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-
+    
+    self.window.rootViewController = leveyTabBarController;
+    [self.window makeKeyAndVisible];
+    
     //***********百度云推送 START
     [BPush setupChannel:launchOptions];
     // 必须。参数对象必须实现(void)onMethod:(NSString*)method response:(NSDictionary*)data 方法,本示例中为 self

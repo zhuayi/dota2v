@@ -26,6 +26,11 @@
     }
     return self;
 }
+//viewwillapper
+-(void)viewWillAppear:(BOOL)animated
+{
+    
+}
 
 - (void)viewDidLoad
 {
@@ -220,6 +225,7 @@
             self.playViewbox.frame = kBackviewDefaultRect;
             self.playbgbox.frame = CGRectMake(0,0,self.playViewbox.frame.size.width, 35);
             self.playstatbox.frame = CGRectMake(0,self.playViewbox.frame.size.height - 35, self.playViewbox.frame.size.width, 35);
+            self.playViewbox_click.frame = CGRectMake(0,0,self.playViewbox.frame.size.width, self.playViewbox.frame.size.height - 35);
             _play.frame = CGRectMake(0, 0, 40, 35);
             _full.frame = CGRectMake(self.playViewbox.frame.size.width - 40,0, 40, 35);
             fullPosLbl.frame = CGRectMake(self.playViewbox.frame.size.width - 40 - 20 - 30 , 8, 70, 20);
@@ -232,27 +238,32 @@
             [_tableviewDelegate PlayViewNoFull];
         } else
         {
-            //self.playViewbox.frame = self.view.bounds;
+            //为了兼容IOS6 只能这么写了
+            float ios_height = IOS_HEIGHT;
+            
+            if (!IsIOS7)
+            {
+                ios_height = ios_height - 20;
+            }
             
             CGAffineTransform at = CGAffineTransformMakeRotation((90.0f * M_PI) / 180.0f);
-            
+       
             at = CGAffineTransformTranslate(at, 200, 0);
             [self.playViewbox setTransform:at];
-            //[self.playbgbox setTransform:at];
             NSLog(@"wodth === %f",IOS_WIDTH);
   
-            self.playViewbox.frame = CGRectMake(0,0,IOS_WIDTH, IOS_HEIGHT);
-            self.playViewbox_click.frame = CGRectMake(0,0,IOS_HEIGHT, IOS_WIDTH - 35);
-            self.playstatbox.frame = CGRectMake(0,320 - 35, IOS_HEIGHT, 35);
-            self.playbgbox.frame = CGRectMake(0,0,IOS_HEIGHT, 35);
+            self.playViewbox.frame = CGRectMake(0,0,IOS_WIDTH, ios_height);
+            self.playViewbox_click.frame = CGRectMake(0,0,ios_height, IOS_WIDTH - 35);
+            self.playstatbox.frame = CGRectMake(0,320 - 35, ios_height, 35);
+            self.playbgbox.frame = CGRectMake(0,0,ios_height, 35);
             _play.frame = CGRectMake(0, 0, 40, 35);
-            _full.frame = CGRectMake(IOS_HEIGHT - 40,0, 40, 35);
-            fullPosLbl.frame = CGRectMake(IOS_HEIGHT - 40 - 20 - 30 , 8, 70, 20);
-            _activityIndicator.center = CGPointMake(IOS_HEIGHT/2,IOS_WIDTH/2);
-            _slider.frame =  CGRectMake(85, 1, IOS_HEIGHT - 175, self.playstatbox.frame.size.height);
+            _full.frame = CGRectMake(ios_height - 40,0, 40, 35);
+            fullPosLbl.frame = CGRectMake(ios_height - 40 - 20 - 30 , 8, 70, 20);
+            _activityIndicator.center = CGPointMake(ios_height/2,IOS_WIDTH/2);
+            _slider.frame =  CGRectMake(85, 1, ios_height - 175, self.playstatbox.frame.size.height);
             bubbleMsgLbl.frame = self.playViewbox_click.frame;
-            
-            [[UIApplication sharedApplication] setStatusBarHidden: YES];
+            [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
+            //[UIApplication sharedApplication].statusBarHidden = YES;
             [_tableviewDelegate PlayViewIsFull];
             button.selected = YES;
         }
@@ -293,11 +304,11 @@
     [UIApplication sharedApplication].idleTimerDisabled = NO;
     [mMPayer unSetupPlayer];
 }
--(void) viewWillAppear:(BOOL)animated
-{
-    
-    [mMPayer unSetupPlayer];
-}
+//-(void) viewWillAppear:(BOOL)animated
+//{
+//    
+//    [mMPayer unSetupPlayer];
+//}
 
 - (void)dealloc
 {

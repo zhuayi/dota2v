@@ -159,7 +159,7 @@
     }
     else
     {
-        navigation_height = 44.f;
+        navigation_height = 0;
     }
     
     self.view.frame = CGRectMake(0, navigation_height, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - navigation_height);
