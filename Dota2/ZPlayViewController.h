@@ -42,6 +42,7 @@
 @property (nonatomic, strong) NSString* videoPath;
 @property (nonatomic, strong) NSTimer* settimeout;
 @property (nonatomic, strong) UISlider * slider;
+@property (nonatomic, assign) BOOL progressDragging;
 -(void) play_Video;
 - (void) full:(UIButton *) button;
 @property(nonatomic,strong) id tableviewDelegate;

@@ -29,6 +29,7 @@
 {
     NSLog(@"APP_WIDTH === %f",[UIScreen mainScreen].bounds.size.width);
     
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     

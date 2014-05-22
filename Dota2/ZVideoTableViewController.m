@@ -40,7 +40,7 @@
     float navigation_height = 0;
     if (!IsIOS7)
     {
-        navigation_height = 84.f;
+        navigation_height = 44.f;
     }
     playbox = [[ZPlayViewController alloc] init];
     playbox.view.frame = CGRectMake(0, navigation_height, IOS_WIDTH, 180);

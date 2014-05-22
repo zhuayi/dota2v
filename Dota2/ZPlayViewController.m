@@ -60,23 +60,28 @@
     [self.playViewbox addSubview:_activityIndicator];
     
     //添加手势
-    
     self.playViewbox_click = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.playViewbox.frame.size.width, self.playViewbox.frame.size.height - 35)];
     //self.playViewbox_click.backgroundColor = [UIColor redColor];
     [_playViewbox addSubview:self.playViewbox_click];
+//    UILabel * errorTips = [[UILabel alloc] initWithFrame:self.playViewbox_click.frame];
+//    errorTips.backgroundColor = [UIColor clearColor];
+//    errorTips.textColor = [UIColor whiteColor];
+//    errorTips.textAlignment = NSTextAlignmentCenter;
+//    errorTips.font = [UIFont systemFontOfSize:16.];
+//    errorTips.text = @"视频加载失败.请检查网络...";
+//    [_playViewbox addSubview:errorTips];
     
     UITapGestureRecognizer * tapGesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(showMenu)];
     [self.playViewbox_click addGestureRecognizer:tapGesture];
     
     //下载状态
-    bubbleMsgLbl = [[UILabel alloc] initWithFrame:CGRectMake(_activityIndicator.frame.origin.x - 25 , _activityIndicator.frame.origin.y, 100, 20)];
+    bubbleMsgLbl = [[UILabel alloc] initWithFrame:self.playViewbox_click.frame];
     bubbleMsgLbl.backgroundColor = [UIColor clearColor];
+    bubbleMsgLbl.textAlignment = NSTextAlignmentCenter;
     bubbleMsgLbl.text = @"";
     bubbleMsgLbl.textColor = [UIColor whiteColor];
     bubbleMsgLbl.font = [UIFont systemFontOfSize:16.];
     [self.playViewbox_click addSubview:bubbleMsgLbl];
-    
-    //[UILabel]
     
     
     //增加状态条
@@ -114,7 +119,7 @@
     curPosLbl = [[UILabel alloc] initWithFrame:CGRectMake(35, 8, 70, 20)];
     //curPosLbl.backgroundColor = [UIColor yellowColor];
     curPosLbl.backgroundColor = [UIColor clearColor];
-    curPosLbl.text = @"";
+    curPosLbl.text = @"00:00:00";
     curPosLbl.textColor = [UIColor whiteColor];
     curPosLbl.font = [UIFont systemFontOfSize:11.];
     [self.playstatbox addSubview:curPosLbl];
@@ -136,7 +141,7 @@
     //总播放时间
     fullPosLbl = [[UILabel alloc] initWithFrame:CGRectMake(self.playViewbox.frame.size.width - 40 - 20 - 30 , 8, 70, 20)];
     fullPosLbl.backgroundColor = [UIColor clearColor];
-    fullPosLbl.text = @"";
+    fullPosLbl.text = @"00:00:00";
     fullPosLbl.textColor = [UIColor whiteColor];
     fullPosLbl.font = [UIFont systemFontOfSize:11.];
     [self.playstatbox addSubview:fullPosLbl];
@@ -166,6 +171,7 @@
 
 -(void) play_Video
 {
+    bubbleMsgLbl.text = @"加载中...";
     [self prepareVideo];
 }
 
@@ -219,7 +225,7 @@
             fullPosLbl.frame = CGRectMake(self.playViewbox.frame.size.width - 40 - 20 - 30 , 8, 70, 20);
             _activityIndicator.center = self.playViewbox.center;
             _slider.frame =  CGRectMake(85, 1, IOS_WIDTH - 175, self.playstatbox.frame.size.height);
-            bubbleMsgLbl.frame = CGRectMake(_activityIndicator.frame.origin.x - 25 , _activityIndicator.frame.origin.y, 100, 20);
+            bubbleMsgLbl.frame = self.playViewbox_click.frame;
             
             [[UIApplication sharedApplication] setStatusBarHidden: NO];
             button.selected = NO;
@@ -244,7 +250,7 @@
             fullPosLbl.frame = CGRectMake(IOS_HEIGHT - 40 - 20 - 30 , 8, 70, 20);
             _activityIndicator.center = CGPointMake(IOS_HEIGHT/2,IOS_WIDTH/2);
             _slider.frame =  CGRectMake(85, 1, IOS_HEIGHT - 175, self.playstatbox.frame.size.height);
-            bubbleMsgLbl.frame = CGRectMake(_activityIndicator.frame.origin.x - 25 , _activityIndicator.frame.origin.y, 100, 20);
+            bubbleMsgLbl.frame = self.playViewbox_click.frame;
             
             [[UIApplication sharedApplication] setStatusBarHidden: YES];
             [_tableviewDelegate PlayViewIsFull];
@@ -366,13 +372,17 @@
 
 - (void)mediaPlayer:(VMediaPlayer *)player error:(id)arg
 {
+    //[mMPayer unSetupPlayer];
+    //错误信息
+    bubbleMsgLbl.text = @"视频加载失败.请检查网络...";
+    [_activityIndicator stopAnimating];
     NSLog(@"VMediaPlayer Error: %@", arg);
 }
 
 //缓冲开始
 - (void)mediaPlayer:(VMediaPlayer *)player bufferingStart:(id)arg
 {
-	//self.progressDragging = YES;
+	self.progressDragging = YES;
 	NSLog(@"NAL 2HBT &&&&&&&&&&&&&&&&.......&&&&&&&&&&&&&&&&&");
     [player pause];
     UIButton * button = (UIButton *)[self.playstatbox viewWithTag:109];
@@ -398,6 +408,7 @@
     button.selected = NO;
     bubbleMsgLbl.hidden =  YES;
 	[player start];
+    self.progressDragging = NO;
     //[self paste:_play];
 }
 
@@ -440,10 +451,14 @@
 //重置按钮坐标
 - (void) syncUIStatus
 {
-    mCurPostion  = [mMPayer getCurrentPosition];
-    [self.slider setValue:(float)mCurPostion/mDuration];
-    fullPosLbl.text = [self timeToHumanString:(long)(mDuration)];
-    curPosLbl.text = [self timeToHumanString:(long)(mCurPostion)];
+    if ([mMPayer isPlaying])
+    {
+        mCurPostion  = [mMPayer getCurrentPosition];
+        [self.slider setValue:(float)mCurPostion/mDuration];
+        fullPosLbl.text = [self timeToHumanString:(long)(mDuration)];
+        curPosLbl.text = [self timeToHumanString:(long)(mCurPostion)];
+    }
+    
 }
 
 
@@ -458,33 +473,52 @@
 	[super viewDidDisappear:animated];
 
 }
-////********************屏幕旋转 START
-////ios5
-//- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-//
-//{
-//    return UIInterfaceOrientationIsLandscape(interfaceOrientation);
-//}
-//
-////ios6
-//-(NSUInteger)supportedInterfaceOrientations
-//
-//{
-//    return UIInterfaceOrientationMaskAll;
-//}
-//
-//- (BOOL)shouldAutorotate
-//{
-//    return NO;
-//}
-//
-////********************屏幕旋转 END
+
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark VMediaPlayerDelegate Implement / Cache
+
+- (void)mediaPlayer:(VMediaPlayer *)player cacheNotAvailable:(id)arg
+{
+	NSLog(@"NAL .... media can't cache.");
+	//self.progressSld.segments = nil;
+}
+
+- (void)mediaPlayer:(VMediaPlayer *)player cacheStart:(id)arg
+{
+	NSLog(@"NAL 1GFC .... media caches index : %@", arg);
+}
+
+- (void)mediaPlayer:(VMediaPlayer *)player cacheUpdate:(id)arg
+{
+	NSArray *segs = (NSArray *)arg;
+    NSLog(@"NAL .... media cacheUpdate, %d, %@", segs.count, segs);
+//	if (mDuration > 0) {
+//		NSMutableArray *arr = [NSMutableArray arrayWithCapacity:0];
+//		for (int i = 0; i < segs.count; i++) {
+//			float val = (float)[segs[i] longLongValue] / mDuration;
+//			[arr addObject:[NSNumber numberWithFloat:val]];
+//		}
+//		self.progressSld.segments = arr;
+//	}
+}
+
+- (void)mediaPlayer:(VMediaPlayer *)player cacheSpeed:(id)arg
+{
+    NSLog(@"NAL .... media cacheSpeed: %dKB/s", [(NSNumber *)arg intValue]);
+}
+
+- (void)mediaPlayer:(VMediaPlayer *)player cacheComplete:(id)arg
+{
+	NSLog(@"NAL .... media cacheComplete");
+	//self.progressSld.segments = @[@(0.0), @(1.0)];
+}
+
 
 - (NSString *)getCacheRootDirectory
 {
