@@ -16,7 +16,8 @@
 
 #import "ZPlayViewController.h"
 #import "EAIntroView.h"
-
+#import "BPush.h"
+#import "JSONKit.h"
 //友盟
 #import "UMTableViewController.h"
 @implementation ZAppDelegate
@@ -105,10 +106,8 @@
         //self.window.frame =  CGRectMake(0,20,self.window.frame.size.width,self.window.frame.size.height-20);
     }
 
-    //NSLog(@"leveyTabBarController == %@",leveyTabBarController.tabBar.frame);
     self.window.rootViewController = leveyTabBarController;
     
-    //[self.window addSubview:leveyTabBarController.view];
     [self.window makeKeyAndVisible];
     
     
@@ -129,10 +128,10 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 
     //***********百度云推送 START
-//    [BPush setupChannel:launchOptions];
-//    // 必须。参数对象必须实现(void)onMethod:(NSString*)method response:(NSDictionary*)data 方法,本示例中为 self
-//    [BPush setDelegate:self];
-//    [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound];
+    [BPush setupChannel:launchOptions];
+    // 必须。参数对象必须实现(void)onMethod:(NSString*)method response:(NSDictionary*)data 方法,本示例中为 self
+    [BPush setDelegate:self];
+    [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound];
     //***********百度云推送 END
     
     //***********设置ASIHTTP缓存
@@ -159,28 +158,44 @@
 
 }
 //***********百度云推送 START
-//- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
-//{
-//    // 必须
-//    [BPush registerDeviceToken:deviceToken];
-//    // 必须。可以在其它时机调用,只有在该方法返回(通过 onMethod:response:回调)绑定成功时,app 才能接收到 Push 消息。一个 app 绑定成功至少一次即可(如 果 access token 变更请重新绑定)。
-//    [BPush bindChannel];
-//}
-//- (void) onMethod:(NSString*)method response:(NSDictionary*)data
-//{
-//    if ([BpushRequestMethod_Bind isEqualToString:method])
-//    {
-//        NSDictionary* res = [[NSDictionary alloc] initWithDictionary:data]; NSString *appid = [res valueForKey:BPushRequestAppIdKey];
-//        NSString * userid = [res valueForKey:BPushRequestUserIdKey];
-//        NSString * channelid = [res valueForKey:BPushRequestChannelIdKey];
-//        int returnCode = [[res valueForKey:BPushRequestErrorCodeKey] intValue]; NSString *requestid = [res valueForKey:BPushRequestRequestIdKey];
-//    }
-//}
-//- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
-//{
-//    // 可选
-//    [BPush handleNotification:userInfo];
-//}
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    // 必须
+    [BPush registerDeviceToken:deviceToken];
+    // 必须。可以在其它时机调用,只有在该方法返回(通过 onMethod:response:回调)绑定成功时,app 才能接收到 Push 消息。一个 app 绑定成功至少一次即可(如 果 access token 变更请重新绑定)。
+    [BPush bindChannel];
+}
+- (void) onMethod:(NSString*)method response:(NSDictionary*)data
+{
+    NSLog(@"On method:%@", method);
+    NSLog(@"data:%@", [data description]);
+    NSDictionary* res = [[NSDictionary alloc] initWithDictionary:data];
+    if ([BPushRequestMethod_Bind isEqualToString:method])
+    {
+        //        NSString *appid = [res valueForKey:BPushRequestAppIdKey];
+        //NSString *userid = [res valueForKey:BPushRequestUserIdKey];
+       // NSString *channelid = [res valueForKey:BPushRequestChannelIdKey];
+        //        NSString *requestid = [res valueForKey:BPushRequestRequestIdKey];
+        int returnCode = [[res valueForKey:BPushRequestErrorCodeKey] intValue];
+        
+        if (returnCode == BPushErrorCode_Success)
+        {
+            NSLog(@"成功绑定, 在这里发送user_id到web 服务器");
+        }
+    }
+    else if ([BPushRequestMethod_Unbind isEqualToString:method])
+    {
+        int returnCode = [[res valueForKey:BPushRequestErrorCodeKey] intValue];
+        if (returnCode == BPushErrorCode_Success) {
+            NSLog(@"绑定失败");
+        }
+    }
+}
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    // 可选
+    [BPush handleNotification:userInfo];
+}
 //***********百度云推送 END
 
 
