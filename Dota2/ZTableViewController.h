@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ZModelHome.h"
+#import "ASIHTTPRequest/ASIDownloadCache.h"
 @class ZModelHome;
 @class MJRefreshBaseView;
 @class MJRefreshHeaderView;
@@ -35,6 +36,8 @@
     UIImageView *_mNoNetworkImageView;
     
 }
+@property (nonatomic,retain) ASIDownloadCache *myCache;
+
 //- (id <BaseControllerDelegate>) baseControllerDelegate;
 
 //@property (nonatomic, assign) (id)<BaseControllerDelegate> baseControllerDelegate;

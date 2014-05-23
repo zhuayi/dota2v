@@ -131,14 +131,7 @@
     [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound];
     //***********百度云推送 END
     
-    //***********设置ASIHTTP缓存
-//    ASIDownloadCache *cache = [[ASIDownloadCache alloc] init];
-//    self.myCache = cache;
-//    //设置缓存路径
-//    NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//    NSString * documentDirectory = [paths objectAtIndex:0];
-//    [self.myCache setStoragePath:[documentDirectory stringByAppendingPathComponent:@"resource"]];
-//    [self.myCache setDefaultCachePolicy:ASIOnlyLoadIfNotCachedCachePolicy];
+    
     
     
     //******友盟测试设备 start

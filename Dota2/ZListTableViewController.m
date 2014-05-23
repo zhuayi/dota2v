@@ -43,9 +43,8 @@
 {
     [super viewDidLoad];
 
-    //下拉刷新
+    //上拉刷新
     [self addFootReload:self.tableView delegate:self];
-    
     _baseControllerDelegate = self;
 }
 - (void)back

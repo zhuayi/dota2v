@@ -17,7 +17,7 @@
     
     BOOL isguide ;
     
-    ASIDownloadCache *myCache;
+    //ASIDownloadCache *myCache;
 }
 @property (strong, nonatomic) UIWindow *window;
 
@@ -32,5 +32,5 @@
 
 //@property (strong, nonatomic) DDMenuController * menuController;
 
-@property (nonatomic,retain) ASIDownloadCache *myCache; 
+
 @end

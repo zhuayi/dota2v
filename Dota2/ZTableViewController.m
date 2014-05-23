@@ -42,7 +42,21 @@
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL :[ NSURL URLWithString : url]];
     [request setDelegate : self];
     
+    //***********设置ASIHTTP缓存
+    ASIDownloadCache *cache = [[ASIDownloadCache alloc] init];
+    //设置缓存路径
+    NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString * documentDirectory = [paths objectAtIndex:0];
+    [cache setStoragePath:[documentDirectory stringByAppendingPathComponent:@"ASIDownloadCache"]];
+    
+    [cache setDefaultCachePolicy:ASIAskServerIfModifiedWhenStaleCachePolicy];
+    //缓存时间
+    [request setSecondsToCache:60*60];
+    [self setMyCache:cache];
+    
     [request startAsynchronous];
+    
+    [request setDownloadCache:[self myCache]];
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
