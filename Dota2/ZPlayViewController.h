@@ -39,6 +39,7 @@
 @property (nonatomic, retain) UIView    *playViewbox_click;
 @property (nonatomic, strong) UIButton * play;
 @property (nonatomic, retain) UIButton * full;
+@property (nonatomic, retain) UIButton * play_reruns;
 @property (nonatomic, strong) NSString* videoPath;
 @property (nonatomic, strong) NSTimer* settimeout;
 @property (nonatomic, strong) UISlider * slider;

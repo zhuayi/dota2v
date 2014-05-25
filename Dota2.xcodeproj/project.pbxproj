@@ -164,6 +164,8 @@
 		389AC4AF1928D8E600804DAB /* topbarbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 389AC4AD1928D8E600804DAB /* topbarbg@2x.png */; };
 		389AC4B11928E14200804DAB /* topbarbg_ios7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 389AC4B01928E14200804DAB /* topbarbg_ios7@2x.png */; };
 		389AC4B31928E4FB00804DAB /* Fav_Filter_ALL@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 389AC4B21928E4FB00804DAB /* Fav_Filter_ALL@2x.png */; };
+		38A005D71931A9AD00C37A6E /* player_reruns.png in Resources */ = {isa = PBXBuildFile; fileRef = 38A005D51931A9AD00C37A6E /* player_reruns.png */; };
+		38A005D81931A9AD00C37A6E /* player_reruns@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38A005D61931A9AD00C37A6E /* player_reruns@2x.png */; };
 		38B5B7D119233450003A1730 /* preview_arrowleft_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 38B5B7CF19233450003A1730 /* preview_arrowleft_icon.png */; };
 		38B5B7D219233450003A1730 /* preview_arrowleft_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38B5B7D019233450003A1730 /* preview_arrowleft_icon@2x.png */; };
 		38B5B7D519233B19003A1730 /* ZVideoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B5B7D419233B19003A1730 /* ZVideoTableViewController.m */; };
@@ -420,6 +422,8 @@
 		389AC4AD1928D8E600804DAB /* topbarbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "topbarbg@2x.png"; sourceTree = "<group>"; };
 		389AC4B01928E14200804DAB /* topbarbg_ios7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "topbarbg_ios7@2x.png"; sourceTree = "<group>"; };
 		389AC4B21928E4FB00804DAB /* Fav_Filter_ALL@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Fav_Filter_ALL@2x.png"; sourceTree = "<group>"; };
+		38A005D51931A9AD00C37A6E /* player_reruns.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_reruns.png; sourceTree = "<group>"; };
+		38A005D61931A9AD00C37A6E /* player_reruns@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "player_reruns@2x.png"; sourceTree = "<group>"; };
 		38B5B7CF19233450003A1730 /* preview_arrowleft_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = preview_arrowleft_icon.png; sourceTree = "<group>"; };
 		38B5B7D019233450003A1730 /* preview_arrowleft_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "preview_arrowleft_icon@2x.png"; sourceTree = "<group>"; };
 		38B5B7D319233B19003A1730 /* ZVideoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZVideoTableViewController.h; sourceTree = "<group>"; };
@@ -870,6 +874,8 @@
 		3855CAC4192781920019187E /* play */ = {
 			isa = PBXGroup;
 			children = (
+				38A005D51931A9AD00C37A6E /* player_reruns.png */,
+				38A005D61931A9AD00C37A6E /* player_reruns@2x.png */,
 				3855CAD11927854F0019187E /* player_fullBtn.png */,
 				3855CAD21927854F0019187E /* player_fullBtn@2x.png */,
 				3855CACD192783FE0019187E /* player_pause.png */,
@@ -1187,6 +1193,7 @@
 				38F8B9D2192BAC8400F6EEE4 /* UMUFP.bundle in Resources */,
 				3855CAC8192782180019187E /* adFullScreen@2x.png in Resources */,
 				38839B2A192914D100B37B24 /* Doat2-Info.plist in Resources */,
+				38A005D81931A9AD00C37A6E /* player_reruns@2x.png in Resources */,
 				38F3581F192C506E00AAC5FE /* player_drag.png in Resources */,
 				3883BF7D192A102500561683 /* Icon-Small@2x.png in Resources */,
 				3883BF87192A28D900561683 /* group_audio_back_pressed@2x.png in Resources */,
@@ -1275,6 +1282,7 @@
 				389A4F8F19273DBF005CE38F /* categoy@2x.png in Resources */,
 				3883BF88192A28D900561683 /* group_audio_back@2x.png in Resources */,
 				3855CAC1192781890019187E /* search_recommended_video_play_icon@2x.png in Resources */,
+				38A005D71931A9AD00C37A6E /* player_reruns.png in Resources */,
 				3863098319277D6D0079A570 /* scan_the_results_play.png in Resources */,
 				387ACDC4192A6170001E928A /* categoy_3@2x.png in Resources */,
 				3855CACF192783FE0019187E /* player_pause.png in Resources */,
@@ -1470,8 +1478,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Miao Xu (Q22LCUB777)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Dota2/Doat2-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Dota2/Doat2-Info.plist";
@@ -1497,8 +1505,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Miao Xu (Q22LCUB777)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Dota2/Doat2-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Dota2/Doat2-Info.plist";

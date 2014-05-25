@@ -88,6 +88,11 @@
     bubbleMsgLbl.font = [UIFont systemFontOfSize:16.];
     [self.playViewbox_click addSubview:bubbleMsgLbl];
     
+    //重播按钮
+    _play_reruns = [[UIButton alloc] initWithFrame:CGRectMake((self.playViewbox_click.frame.size.width - 77 )/2, (self.playViewbox_click.frame.size.height - 77 )/2, 77, 77)];
+    [_play_reruns setBackgroundImage:[UIImage imageNamed:@"scan_the_results_play"] forState:UIControlStateNormal];
+    [_play_reruns addTarget:self action:@selector(play_reset:) forControlEvents:UIControlEventTouchUpInside];
+    [self.playViewbox_click addSubview:_play_reruns];
     
     //增加状态条
     self.playstatbox = [[UIView alloc] initWithFrame:CGRectMake(0, self.playViewbox.frame.size.height - 35, self.playViewbox.frame.size.width, 35)];
@@ -115,6 +120,7 @@
     //全屏按钮
     _full = [[UIButton alloc] initWithFrame:CGRectMake(self.playViewbox.frame.size.width - 40,0, 40, 35)];
     //_full.backgroundColor = [UIColor redColor];
+    _full.tag = 110;
     [_full setImage:[UIImage imageNamed:@"adFullScreen"] forState:UIControlStateNormal];
     [_full setImage:[UIImage imageNamed:@"player_fullBtn"] forState:UIControlStateSelected];
     [_full addTarget:self action:@selector(full:) forControlEvents:UIControlEventTouchUpInside];
@@ -176,6 +182,7 @@
 
 -(void) play_Video
 {
+    _play_reruns.hidden = YES;
     bubbleMsgLbl.text = @"加载中...";
     [self prepareVideo];
 }
@@ -205,6 +212,64 @@
     [self update_history];
 }
 
+//quanping
+-(void) isfull
+{
+    //为了兼容IOS6 只能这么写了
+    float ios_height = IOS_HEIGHT;
+    
+    if (!IsIOS7)
+    {
+        ios_height = ios_height - 20;
+    }
+    
+    CGAffineTransform at = CGAffineTransformMakeRotation((90.0f * M_PI) / 180.0f);
+    
+    at = CGAffineTransformTranslate(at, 200, 0);
+    [self.playViewbox setTransform:at];
+    NSLog(@"wodth === %f",IOS_WIDTH);
+    
+    self.playViewbox.frame = CGRectMake(0,0,IOS_WIDTH, ios_height);
+    self.playViewbox_click.frame = CGRectMake(0,0,ios_height, IOS_WIDTH - 35);
+    self.playstatbox.frame = CGRectMake(0,320 - 35, ios_height, 35);
+    self.playbgbox.frame = CGRectMake(0,0,ios_height, 35);
+    _play.frame = CGRectMake(0, 0, 40, 35);
+    _full.frame = CGRectMake(ios_height - 40,0, 40, 35);
+    fullPosLbl.frame = CGRectMake(ios_height - 40 - 20 - 30 , 8, 70, 20);
+    _activityIndicator.center = CGPointMake(ios_height/2,IOS_WIDTH/2);
+    _slider.frame =  CGRectMake(85, 1, ios_height - 175, self.playstatbox.frame.size.height);
+    bubbleMsgLbl.frame = self.playViewbox_click.frame;
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
+    [_tableviewDelegate PlayViewIsFull];
+}
+
+
+- (void) isNotfull
+{
+    //self.playViewbox.frame = kBackviewDefaultRect;
+    CGAffineTransform at = CGAffineTransformMakeRotation(0);
+    
+    at = CGAffineTransformTranslate(at, 0, 0);
+    
+    [self.playViewbox setTransform:at];
+    
+    NSLog(@"width === %f",[UIScreen mainScreen].bounds.size.height);
+    
+    self.playViewbox.frame = kBackviewDefaultRect;
+    self.playbgbox.frame = CGRectMake(0,0,self.playViewbox.frame.size.width, 35);
+    self.playstatbox.frame = CGRectMake(0,self.playViewbox.frame.size.height - 35, self.playViewbox.frame.size.width, 35);
+    self.playViewbox_click.frame = CGRectMake(0,0,self.playViewbox.frame.size.width, self.playViewbox.frame.size.height - 35);
+    _play.frame = CGRectMake(0, 0, 40, 35);
+    _full.frame = CGRectMake(self.playViewbox.frame.size.width - 40,0, 40, 35);
+    fullPosLbl.frame = CGRectMake(self.playViewbox.frame.size.width - 40 - 20 - 30 , 8, 70, 20);
+    _activityIndicator.center = self.playViewbox.center;
+    _slider.frame =  CGRectMake(85, 1, IOS_WIDTH - 175, self.playstatbox.frame.size.height);
+    bubbleMsgLbl.frame = self.playViewbox_click.frame;
+    
+    [[UIApplication sharedApplication] setStatusBarHidden: NO];
+    [_tableviewDelegate PlayViewNoFull];
+}
+
 //全屏
 - (void) full:(UIButton *) button
 {
@@ -213,58 +278,13 @@
         if (button.selected == 1)
         {
             
-            //self.playViewbox.frame = kBackviewDefaultRect;
-            CGAffineTransform at = CGAffineTransformMakeRotation(0);
-            
-            at = CGAffineTransformTranslate(at, 0, 0);
-            
-            [self.playViewbox setTransform:at];
-            
-            NSLog(@"width === %f",[UIScreen mainScreen].bounds.size.height);
-            
-            self.playViewbox.frame = kBackviewDefaultRect;
-            self.playbgbox.frame = CGRectMake(0,0,self.playViewbox.frame.size.width, 35);
-            self.playstatbox.frame = CGRectMake(0,self.playViewbox.frame.size.height - 35, self.playViewbox.frame.size.width, 35);
-            self.playViewbox_click.frame = CGRectMake(0,0,self.playViewbox.frame.size.width, self.playViewbox.frame.size.height - 35);
-            _play.frame = CGRectMake(0, 0, 40, 35);
-            _full.frame = CGRectMake(self.playViewbox.frame.size.width - 40,0, 40, 35);
-            fullPosLbl.frame = CGRectMake(self.playViewbox.frame.size.width - 40 - 20 - 30 , 8, 70, 20);
-            _activityIndicator.center = self.playViewbox.center;
-            _slider.frame =  CGRectMake(85, 1, IOS_WIDTH - 175, self.playstatbox.frame.size.height);
-            bubbleMsgLbl.frame = self.playViewbox_click.frame;
-            
-            [[UIApplication sharedApplication] setStatusBarHidden: NO];
+            [self isNotfull];
             button.selected = NO;
-            [_tableviewDelegate PlayViewNoFull];
-        } else
+            
+        }
+        else
         {
-            //为了兼容IOS6 只能这么写了
-            float ios_height = IOS_HEIGHT;
-            
-            if (!IsIOS7)
-            {
-                ios_height = ios_height - 20;
-            }
-            
-            CGAffineTransform at = CGAffineTransformMakeRotation((90.0f * M_PI) / 180.0f);
-       
-            at = CGAffineTransformTranslate(at, 200, 0);
-            [self.playViewbox setTransform:at];
-            NSLog(@"wodth === %f",IOS_WIDTH);
-  
-            self.playViewbox.frame = CGRectMake(0,0,IOS_WIDTH, ios_height);
-            self.playViewbox_click.frame = CGRectMake(0,0,ios_height, IOS_WIDTH - 35);
-            self.playstatbox.frame = CGRectMake(0,320 - 35, ios_height, 35);
-            self.playbgbox.frame = CGRectMake(0,0,ios_height, 35);
-            _play.frame = CGRectMake(0, 0, 40, 35);
-            _full.frame = CGRectMake(ios_height - 40,0, 40, 35);
-            fullPosLbl.frame = CGRectMake(ios_height - 40 - 20 - 30 , 8, 70, 20);
-            _activityIndicator.center = CGPointMake(ios_height/2,IOS_WIDTH/2);
-            _slider.frame =  CGRectMake(85, 1, ios_height - 175, self.playstatbox.frame.size.height);
-            bubbleMsgLbl.frame = self.playViewbox_click.frame;
-            [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
-            //[UIApplication sharedApplication].statusBarHidden = YES;
-            [_tableviewDelegate PlayViewIsFull];
+            [self isfull];
             button.selected = YES;
         }
         //[self syncUIStatus];
@@ -272,6 +292,12 @@
     }];
  
     NSLog(@"playstatbox ======= %@",self.playstatbox);
+}
+
+//重新播放
+- (void) play_reset:(UIButton *) button
+{
+    [self play_Video];
 }
 
 - (void) showMenu
@@ -334,16 +360,21 @@
 //记录播放时间
 - (void) update_history
 {
-    BOOL isPlaying = [mMPayer isPlaying];
-    if (isPlaying)
+    //BOOL isPlaying = [mMPayer isPlaying];
+    if (!self.progressDragging)
     {
         mDuration  = [mMPayer getDuration];
-        long time = (long)(mCurPostion);
         
-        [userinfo setInteger:time forKey:_videoPath];
-        [userinfo synchronize];
+        if (mDuration > 0)
+        {
+            long time = (long)(mCurPostion);
+            
+            [userinfo setInteger:time forKey:_videoPath];
+            [userinfo synchronize];
+            
+            NSLog(@"开始记录时间!!!%@",[self timeToHumanString:(long)([userinfo integerForKey:_videoPath])]);
+        }
         
-        NSLog(@"开始记录时间!!!%@",[self timeToHumanString:(long)([userinfo integerForKey:_videoPath])]);
     }
 }
 
@@ -361,7 +392,6 @@
     curPosLbl.text = [self timeToHumanString:(long)(mCurPostion)];
     [_activityIndicator stopAnimating];
     [player start];
-    
     [player seekTo:[userinfo integerForKey:_videoPath]];
     _settimeout = [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(update_history) userInfo:nil repeats:YES];
     mSyncSeekTimer = [NSTimer scheduledTimerWithTimeInterval:0.1
@@ -373,12 +403,40 @@
 
 }
 
+-(void)quicklyStopMovie
+{
+	[mMPayer reset];
+	[mSyncSeekTimer invalidate];
+    [_settimeout invalidate];
+	mSyncSeekTimer = nil;
+	_slider.value = 0.0;
+	//self.progressSld.segments = nil;
+	curPosLbl.text = @"00:00:00";
+	fullPosLbl.text = @"00:00:00";
+	//self.downloadRate.text = nil;
+	mDuration = 0;
+	mCurPostion = 0;
+	//[self stopActivity];
+	//[self setBtnEnableStatus:YES];
+	[UIApplication sharedApplication].idleTimerDisabled = NO;
+}
 
 
 //播放结束
 - (void)mediaPlayer:(VMediaPlayer *)player playbackComplete:(id)arg
 {
-    [mMPayer unSetupPlayer];
+    [self isNotfull];
+    UIButton * button = (UIButton *)[self.playstatbox viewWithTag:110];
+    button.selected = NO;
+    
+    [self quicklyStopMovie];
+    [userinfo setInteger:0 forKey:_videoPath];
+    [userinfo synchronize];
+    _play_reruns.hidden = NO;
+    //is_write_time = NO;
+    //[userinfo setInteger:0 forKey:_videoPath];
+    //[userinfo synchronize];
+    //[mMPayer reset];
 }
 
 - (void)mediaPlayer:(VMediaPlayer *)player error:(id)arg
@@ -420,6 +478,7 @@
     bubbleMsgLbl.hidden =  YES;
 	[player start];
     self.progressDragging = NO;
+    
     //[self paste:_play];
 }
 
@@ -427,6 +486,11 @@
 {
     //is_write_time = YES;
     NSLog(@"arg === %@",arg);
+}
+- (void)mediaPlayer:(VMediaPlayer *)player notSeekable:(id)arg
+{
+	self.progressDragging = NO;
+	NSLog(@"notSeekable=====");
 }
 
 - (void)mediaPlayer:(VMediaPlayer *)player setupPlayerPreference:(id)arg
@@ -462,7 +526,7 @@
 //重置按钮坐标
 - (void) syncUIStatus
 {
-    if ([mMPayer isPlaying])
+    if (!self.progressDragging)
     {
         mCurPostion  = [mMPayer getCurrentPosition];
         [self.slider setValue:(float)mCurPostion/mDuration];
