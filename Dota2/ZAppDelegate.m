@@ -136,19 +136,19 @@
     
     
     //******友盟测试设备 start
-    Class cls = NSClassFromString(@"UMANUtil");
-    SEL deviceIDSelector = @selector(openUDIDString);
-    NSString *deviceID = nil;
-    if(cls && [cls respondsToSelector:deviceIDSelector]){
-        deviceID = [cls performSelector:deviceIDSelector];
-    }
-    NSLog(@"{\"oid\": \"%@\"}", deviceID);
+//    Class cls = NSClassFromString(@"UMANUtil");
+//    SEL deviceIDSelector = @selector(openUDIDString);
+//    NSString *deviceID = nil;
+//    if(cls && [cls respondsToSelector:deviceIDSelector]){
+//        deviceID = [cls performSelector:deviceIDSelector];
+//    }
+//    NSLog(@"{\"oid\": \"%@\"}", deviceID);
     //******友盟测试设备 end
     
     [MobClick startWithAppkey:@"537b727756240b72b602a09c" reportPolicy:SEND_INTERVAL   channelId:@"dota"];
     NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
     [MobClick setAppVersion:version];
-    [MobClick setLogEnabled:YES];
+    //[MobClick setLogEnabled:YES];
     
     return YES;
 
