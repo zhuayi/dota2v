@@ -41,6 +41,14 @@
 		380EE66B191FD7BE003B5B00 /* ZMoreTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 380EE66A191FD7BE003B5B00 /* ZMoreTableViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		380EE676191FD990003B5B00 /* toolbar_translucent_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 380EE674191FD990003B5B00 /* toolbar_translucent_background.png */; };
 		380EE677191FD990003B5B00 /* toolbar_translucent_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 380EE675191FD990003B5B00 /* toolbar_translucent_background@2x.png */; };
+		38142B1A193218D100F53BB9 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 38142B19193218D100F53BB9 /* libsqlite3.dylib */; };
+		38142B1D1932191C00F53BB9 /* ZSqllite.m in Sources */ = {isa = PBXBuildFile; fileRef = 38142B1C1932191C00F53BB9 /* ZSqllite.m */; };
+		38142B211932262400F53BB9 /* DbVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 38142B201932262400F53BB9 /* DbVideo.m */; };
+		38142B2E1932264600F53BB9 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 38142B241932264600F53BB9 /* FMDatabase.m */; };
+		38142B2F1932264600F53BB9 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 38142B261932264600F53BB9 /* FMDatabaseAdditions.m */; };
+		38142B301932264600F53BB9 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 38142B281932264600F53BB9 /* FMDatabasePool.m */; };
+		38142B311932264600F53BB9 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 38142B2A1932264600F53BB9 /* FMDatabaseQueue.m */; };
+		38142B321932264600F53BB9 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 38142B2D1932264600F53BB9 /* FMResultSet.m */; };
 		3818B64419249E9200CABFB2 /* EAIntroPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3818B64119249E9200CABFB2 /* EAIntroPage.m */; };
 		3818B64519249E9200CABFB2 /* EAIntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3818B64319249E9200CABFB2 /* EAIntroView.m */; };
 		3818B65819249EA800CABFB2 /* femalecodertocat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3818B64D19249EA800CABFB2 /* femalecodertocat@2x.png */; };
@@ -202,6 +210,7 @@
 		38D69AF01922681500265744 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38D69AEF1922681500265744 /* CFNetwork.framework */; };
 		38D69AF21922681C00265744 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38D69AF11922681C00265744 /* SystemConfiguration.framework */; };
 		38D69AF41922682300265744 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38D69AF31922682300265744 /* MobileCoreServices.framework */; };
+		38DDAE2C193385EF0010B9F8 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38DDAE2A193385EF0010B9F8 /* libMobClickLibrary.a */; };
 		38EDF496192CDCA000F761B5 /* um_no_network.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EDF494192CDCA000F761B5 /* um_no_network.png */; };
 		38EDF497192CDCA000F761B5 /* um_nonetwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EDF495192CDCA000F761B5 /* um_nonetwork@2x.png */; };
 		38F3581F192C506E00AAC5FE /* player_drag.png in Resources */ = {isa = PBXBuildFile; fileRef = 38F3581D192C506E00AAC5FE /* player_drag.png */; };
@@ -265,6 +274,22 @@
 		380EE66A191FD7BE003B5B00 /* ZMoreTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZMoreTableViewController.m; sourceTree = "<group>"; };
 		380EE674191FD990003B5B00 /* toolbar_translucent_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toolbar_translucent_background.png; sourceTree = "<group>"; };
 		380EE675191FD990003B5B00 /* toolbar_translucent_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toolbar_translucent_background@2x.png"; sourceTree = "<group>"; };
+		38142B19193218D100F53BB9 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		38142B1B1932191C00F53BB9 /* ZSqllite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSqllite.h; sourceTree = "<group>"; };
+		38142B1C1932191C00F53BB9 /* ZSqllite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSqllite.m; sourceTree = "<group>"; };
+		38142B1F1932262400F53BB9 /* DbVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DbVideo.h; sourceTree = "<group>"; };
+		38142B201932262400F53BB9 /* DbVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DbVideo.m; sourceTree = "<group>"; };
+		38142B231932264600F53BB9 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		38142B241932264600F53BB9 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		38142B251932264600F53BB9 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		38142B261932264600F53BB9 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		38142B271932264600F53BB9 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		38142B281932264600F53BB9 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		38142B291932264600F53BB9 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		38142B2A1932264600F53BB9 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		38142B2B1932264600F53BB9 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
+		38142B2C1932264600F53BB9 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		38142B2D1932264600F53BB9 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 		3818B64019249E9200CABFB2 /* EAIntroPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAIntroPage.h; sourceTree = "<group>"; };
 		3818B64119249E9200CABFB2 /* EAIntroPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAIntroPage.m; sourceTree = "<group>"; };
 		3818B64219249E9200CABFB2 /* EAIntroView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAIntroView.h; sourceTree = "<group>"; };
@@ -486,6 +511,8 @@
 		38D69AF11922681C00265744 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		38D69AF31922682300265744 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		38D69AF51922683400265744 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
+		38DDAE2A193385EF0010B9F8 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
+		38DDAE2B193385EF0010B9F8 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
 		38EDF494192CDCA000F761B5 /* um_no_network.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = um_no_network.png; path = UMUFP.bundle/um_no_network.png; sourceTree = "<group>"; };
 		38EDF495192CDCA000F761B5 /* um_nonetwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "um_nonetwork@2x.png"; path = "UMUFP.bundle/um_nonetwork@2x.png"; sourceTree = "<group>"; };
 		38F3581D192C506E00AAC5FE /* player_drag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_drag.png; sourceTree = "<group>"; };
@@ -513,6 +540,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38142B1A193218D100F53BB9 /* libsqlite3.dylib in Frameworks */,
 				38F8B9D1192BAC8400F6EEE4 /* libUMAppNetwork_3.5.6.a in Frameworks */,
 				38B5B7E819237FD8003A1730 /* libz.dylib in Frameworks */,
 				38D69AF21922681C00265744 /* SystemConfiguration.framework in Frameworks */,
@@ -531,6 +559,7 @@
 				380EE60A191FCCFB003B5B00 /* CoreGraphics.framework in Frameworks */,
 				38B5B800192384F4003A1730 /* libVitamio.a in Frameworks */,
 				38B5B7E219237F7B003A1730 /* AudioToolbox.framework in Frameworks */,
+				38DDAE2C193385EF0010B9F8 /* libMobClickLibrary.a in Frameworks */,
 				38B5B7FE192384F3003A1730 /* libffmpeg.a in Frameworks */,
 				3845E5691920C9F000C19AC2 /* AVFoundation.framework in Frameworks */,
 				381D5C93192285150098C9CD /* MapKit.framework in Frameworks */,
@@ -578,6 +607,7 @@
 		380EE606191FCCFB003B5B00 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				38142B19193218D100F53BB9 /* libsqlite3.dylib */,
 				3889AD2E192B848500EC7E33 /* CoreTelephony.framework */,
 				38B5B7EB19237FEC003A1730 /* libiconv.dylib */,
 				38B5B7E919237FE4003A1730 /* libstdc++.dylib */,
@@ -608,6 +638,7 @@
 		380EE60F191FCCFB003B5B00 /* Dota2 */ = {
 			isa = PBXGroup;
 			children = (
+				38142B1E1932260200F53BB9 /* db */,
 				380EE642191FCD89003B5B00 /* source */,
 				380EE641191FCD6D003B5B00 /* model */,
 				380EE640191FCD5D003B5B00 /* images */,
@@ -760,6 +791,7 @@
 		380EE642191FCD89003B5B00 /* source */ = {
 			isa = PBXGroup;
 			children = (
+				38142B221932264600F53BB9 /* fmdb */,
 				38399821192DD35F00CDE392 /* opensource */,
 				3839981D192DD32900CDE392 /* baidu_push */,
 				38F8B9C6192BAC7400F6EEE4 /* UM */,
@@ -773,6 +805,8 @@
 				380EE678191FE405003B5B00 /* ZTabBar */,
 				386AFA871925E43500B86B53 /* ZTableViewController.h */,
 				386AFA881925E43500B86B53 /* ZTableViewController.m */,
+				38142B1B1932191C00F53BB9 /* ZSqllite.h */,
+				38142B1C1932191C00F53BB9 /* ZSqllite.m */,
 			);
 			name = source;
 			sourceTree = "<group>";
@@ -784,6 +818,33 @@
 				380EE644191FCDC2003B5B00 /* ZTabBarViewController.m */,
 			);
 			name = ZTabBar;
+			sourceTree = "<group>";
+		};
+		38142B1E1932260200F53BB9 /* db */ = {
+			isa = PBXGroup;
+			children = (
+				38142B1F1932262400F53BB9 /* DbVideo.h */,
+				38142B201932262400F53BB9 /* DbVideo.m */,
+			);
+			name = db;
+			sourceTree = "<group>";
+		};
+		38142B221932264600F53BB9 /* fmdb */ = {
+			isa = PBXGroup;
+			children = (
+				38142B231932264600F53BB9 /* FMDatabase.h */,
+				38142B241932264600F53BB9 /* FMDatabase.m */,
+				38142B251932264600F53BB9 /* FMDatabaseAdditions.h */,
+				38142B261932264600F53BB9 /* FMDatabaseAdditions.m */,
+				38142B271932264600F53BB9 /* FMDatabasePool.h */,
+				38142B281932264600F53BB9 /* FMDatabasePool.m */,
+				38142B291932264600F53BB9 /* FMDatabaseQueue.h */,
+				38142B2A1932264600F53BB9 /* FMDatabaseQueue.m */,
+				38142B2B1932264600F53BB9 /* FMDB.h */,
+				38142B2C1932264600F53BB9 /* FMResultSet.h */,
+				38142B2D1932264600F53BB9 /* FMResultSet.m */,
+			);
+			path = fmdb;
 			sourceTree = "<group>";
 		};
 		3818B63F19249E9200CABFB2 /* EAIntroView */ = {
@@ -1057,6 +1118,8 @@
 		38F8B9C6192BAC7400F6EEE4 /* UM */ = {
 			isa = PBXGroup;
 			children = (
+				38DDAE2A193385EF0010B9F8 /* libMobClickLibrary.a */,
+				38DDAE2B193385EF0010B9F8 /* MobClick.h */,
 				38F8B9D6192BAE0D00F6EEE4 /* TableView */,
 				38F8B9C7192BAC8400F6EEE4 /* libUMAppNetwork_3.5.6.a */,
 				38F8B9C8192BAC8400F6EEE4 /* UMUFP.bundle */,
@@ -1310,6 +1373,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				381D5C8219227EDA0098C9CD /* SDWebImageDecoder.m in Sources */,
+				38142B1D1932191C00F53BB9 /* ZSqllite.m in Sources */,
 				38B5B7D519233B19003A1730 /* ZVideoTableViewController.m in Sources */,
 				380EE63F191FCD4F003B5B00 /* HomeTableViewController.m in Sources */,
 				386AFA981925F9C900B86B53 /* MJRefreshFooterView.m in Sources */,
@@ -1339,7 +1403,9 @@
 				38D69AEE192266DE00265744 /* Reachability.m in Sources */,
 				389A4F8D19273695005CE38F /* ZCategoryViewController.m in Sources */,
 				38D69AE6192266DE00265744 /* ASIAuthenticationDialog.m in Sources */,
+				38142B2E1932264600F53BB9 /* FMDatabase.m in Sources */,
 				381D5C8419227EDA0098C9CD /* SDWebImageDownloaderOperation.m in Sources */,
+				38142B301932264600F53BB9 /* FMDatabasePool.m in Sources */,
 				3855CADD1927B89D0019187E /* ZPlayViewController.m in Sources */,
 				38D69AEB192266DE00265744 /* ASIHTTPRequest.m in Sources */,
 				386AFA971925F9C900B86B53 /* MJRefreshConst.m in Sources */,
@@ -1352,13 +1418,17 @@
 				381D5C7F19227EDA0098C9CD /* NSData+ImageContentType.m in Sources */,
 				380EE645191FCDC2003B5B00 /* ZTabBarViewController.m in Sources */,
 				3839982E192DD36900CDE392 /* GzipCompressor.m in Sources */,
+				38142B311932264600F53BB9 /* FMDatabaseQueue.m in Sources */,
 				380EE664191FD720003B5B00 /* ZFindTableViewController.m in Sources */,
 				380EE66B191FD7BE003B5B00 /* ZMoreTableViewController.m in Sources */,
+				38142B211932262400F53BB9 /* DbVideo.m in Sources */,
 				386AFA991925F9C900B86B53 /* MJRefreshHeaderView.m in Sources */,
 				381D5C8B19227EDA0098C9CD /* UIImageView+WebCache.m in Sources */,
 				38399830192DD36900CDE392 /* OpenUDID.m in Sources */,
 				38F8B9DE192BAE1800F6EEE4 /* UMTableViewController.m in Sources */,
+				38142B321932264600F53BB9 /* FMResultSet.m in Sources */,
 				38D4578C1924FCAA00B5A05D /* ZListTableViewController.m in Sources */,
+				38142B2F1932264600F53BB9 /* FMDatabaseAdditions.m in Sources */,
 				38B5B7E019236EC0003A1730 /* LeveyTabBarController.m in Sources */,
 				38D69AEA192266DE00265744 /* ASIFormDataRequest.m in Sources */,
 				38D69AE8192266DE00265744 /* ASIDataDecompressor.m in Sources */,

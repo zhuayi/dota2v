@@ -81,7 +81,7 @@
     //#warning Incomplete method implementation.
     // Return the number of rows in the section.
     NSString * headername = [NSString stringWithFormat:@"%d",(section+1)];
-    NSLog(@"_list objectForKey:headername === %@",[_list objectForKey:headername]);
+    //NSLog(@"_list objectForKey:headername === %@",[_list objectForKey:headername]);
     return [[_list objectForKey:headername] count];
 
 }

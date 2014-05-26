@@ -41,6 +41,9 @@
 @property (nonatomic, retain) UIButton * full;
 @property (nonatomic, retain) UIButton * play_reruns;
 @property (nonatomic, strong) NSString* videoPath;
+@property (nonatomic, strong) NSString* videoID;
+@property (nonatomic, strong) NSString* videoTitle;
+@property (nonatomic, strong) NSString* videoPic;
 @property (nonatomic, strong) NSTimer* settimeout;
 @property (nonatomic, strong) UISlider * slider;
 @property (nonatomic, assign) BOOL progressDragging;

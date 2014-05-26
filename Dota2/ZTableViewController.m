@@ -7,6 +7,7 @@
 //
 
 #import "ZTableViewController.h"
+#import "MobClick.h"
 @interface ZTableViewController ()
 
 @end
@@ -34,6 +35,17 @@
     return self;
 }
 
+-(void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [MobClick beginLogPageView:@"page"];
+}
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"page"];
+}
+
 //**********************ASIHTTPRequest  start
 - (void)http_Async : (NSString *) url
 {
@@ -56,7 +68,7 @@
     
     [request startAsynchronous];
     
-    [request setDownloadCache:[self myCache]];
+    //[request setDownloadCache:[self myCache]];
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request

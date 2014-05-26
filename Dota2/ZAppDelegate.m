@@ -17,6 +17,7 @@
 #import "EAIntroView.h"
 #import "BPush.h"
 #import "JSONKit.h"
+#import "MobClick.h"
 //友盟
 #import "UMTableViewController.h"
 @implementation ZAppDelegate
@@ -72,10 +73,10 @@
 	[imgDic3 setObject:[UIImage imageNamed:@"home_find_notselected"] forKey:@"Default"];
 	[imgDic3 setObject:[UIImage imageNamed:@"home_find_selected"] forKey:@"Highlighted"];
 	[imgDic3 setObject:[UIImage imageNamed:@"home_find_selected"] forKey:@"Selected"];
-//	NSMutableDictionary *imgDic4 = [NSMutableDictionary dictionaryWithCapacity:3];
-//	[imgDic4 setObject:[UIImage imageNamed:@"tabbar_find_os7"] forKey:@"Default"];
-//	[imgDic4 setObject:[UIImage imageNamed:@"tabbar_find_highlighted_os7"] forKey:@"Highlighted"];
-//	[imgDic4 setObject:[UIImage imageNamed:@"tabbar_find_highlighted_os7"] forKey:@"Selected"];
+	NSMutableDictionary *imgDic4 = [NSMutableDictionary dictionaryWithCapacity:3];
+	[imgDic4 setObject:[UIImage imageNamed:@"tabbar_find_os7"] forKey:@"Default"];
+	[imgDic4 setObject:[UIImage imageNamed:@"tabbar_find_highlighted_os7"] forKey:@"Highlighted"];
+	[imgDic4 setObject:[UIImage imageNamed:@"tabbar_find_highlighted_os7"] forKey:@"Selected"];
 	NSMutableDictionary *imgDic5 = [NSMutableDictionary dictionaryWithCapacity:3];
 	[imgDic5 setObject:[UIImage imageNamed:@"home_mine_notselected"] forKey:@"Default"];
 	[imgDic5 setObject:[UIImage imageNamed:@"home_mine_selected"] forKey:@"Highlighted"];
@@ -135,18 +136,25 @@
     
     
     //******友盟测试设备 start
-//    Class cls = NSClassFromString(@"UMANUtil");
-//    SEL deviceIDSelector = @selector(openUDIDString);
-//    NSString *deviceID = nil;
-//    if(cls && [cls respondsToSelector:deviceIDSelector]){
-//        deviceID = [cls performSelector:deviceIDSelector];
-//    }
-//    NSLog(@"{\"oid\": \"%@\"}", deviceID);
+    Class cls = NSClassFromString(@"UMANUtil");
+    SEL deviceIDSelector = @selector(openUDIDString);
+    NSString *deviceID = nil;
+    if(cls && [cls respondsToSelector:deviceIDSelector]){
+        deviceID = [cls performSelector:deviceIDSelector];
+    }
+    NSLog(@"{\"oid\": \"%@\"}", deviceID);
     //******友盟测试设备 end
+    
+    [MobClick startWithAppkey:@"537b727756240b72b602a09c" reportPolicy:SEND_INTERVAL   channelId:@"dota"];
+    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    [MobClick setAppVersion:version];
+    [MobClick setLogEnabled:YES];
     
     return YES;
 
 }
+
+
 //***********百度云推送 START
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {

@@ -68,7 +68,9 @@
     
     [self.tableView reloadSections:[[NSIndexSet alloc]initWithIndex:1] withRowAnimation:UITableViewRowAnimationFade];
     playbox.videoPath = [[weatherDic objectForKey:@"item"] objectForKey:@"video_url"];
-    
+    playbox.videoID = [NSString stringWithFormat:@"%d",_vid];
+    playbox.videoPic = [[weatherDic objectForKey:@"item"] objectForKey:@"video_pic"];
+    playbox.videoTitle = self.title;
     [playbox play_Video];
 
 }

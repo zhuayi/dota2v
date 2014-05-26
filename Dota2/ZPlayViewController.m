@@ -7,7 +7,7 @@
 //
 
 #import "ZPlayViewController.h"
-
+#import "ZFindTableViewController.h"
 @interface ZPlayViewController ()
 
 @end
@@ -100,6 +100,9 @@
     self.playstatbox.autoresizingMask = UIViewAutoresizingNone;
     [self.playViewbox addSubview:self.playstatbox];
     NSLog(@"playstatbox === %@",self.playstatbox);
+    
+    
+    
     //透明遮罩背景
     _playbgbox = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.playstatbox.frame.size.width, 35)];
     _playbgbox.backgroundColor = [UIColor blackColor];
@@ -157,6 +160,17 @@
     fullPosLbl.font = [UIFont systemFontOfSize:11.];
     [self.playstatbox addSubview:fullPosLbl];
     
+    
+    //右侧分享区域
+//    UIView * right_share =  [[UIView alloc] initWithFrame:CGRectMake(self.playViewbox_click.frame.size.width - 40, (self.playViewbox_click.frame.size.height - 100) / 2, 30, 100)];
+//    right_share.backgroundColor = [UIColor redColor];
+//    [self.playViewbox addSubview:right_share];
+//    
+//    UIButton * downButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+//    downButton.backgroundColor = [UIColor yellowColor];
+//    [downButton addTarget:self action:@selector(downvideo) forControlEvents:UIControlEventTouchUpInside];
+//    [right_share addSubview:downButton];
+    
     if (!mMPayer)
     {
         mMPayer = [VMediaPlayer sharedInstance];
@@ -165,6 +179,14 @@
     
     NSLog(@"tableviewDelegate == ===$$$$$=== = %@",_tableviewDelegate);
     
+}
+
+//下载视频
+-(void) downvideo
+{
+    ZFindTableViewController * down = [[ZFindTableViewController alloc] init];
+    [down insert_video:self.videoID video_pic:self.videoPic video_title:self.videoTitle video_url:self.videoPath];
+    //NSLog(@"title == %@ ,pic ===%@ ,path=== %@, videid === %@",self.videoTitle,self.videoPic,self.videoPath,self.videoID);
 }
 
 - (void) PlayViewIsFull
@@ -350,7 +372,10 @@
         //_videoPath = @"http://v.youku.com/player/getRealM3U8/vid/XNzEzMTA1OTA4/type/video.m3u8";
         //播放时不要锁屏
         [UIApplication sharedApplication].idleTimerDisabled = YES;
+        
+        //_videoPath = @"http://218.249.126.47/69716648D764A848D67A2E529E/0300020D0C538142B6876508EF0033CAA1B33A-3A17-F5FF-11E0-F01F102BE4CB.flv.ts";
         videoURL = [NSURL URLWithString:_videoPath];
+        
         [mMPayer setDataSource:videoURL];
         
         [mMPayer prepareAsync];
