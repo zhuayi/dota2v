@@ -15,11 +15,11 @@
 #import "LeveyTabBarController.h"
 #import "ZPlayViewController.h"
 #import "EAIntroView.h"
-#import "BPush.h"
-#import "JSONKit.h"
+#import "ZVideoTableViewController.h"
 #import "MobClick.h"
 //友盟
 #import "UMTableViewController.h"
+
 @implementation ZAppDelegate
 
 @synthesize managedObjectContext = _managedObjectContext;
@@ -29,7 +29,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     NSLog(@"APP_WIDTH === %f",[UIScreen mainScreen].bounds.size.width);
-    
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
@@ -88,23 +87,8 @@
     leveyTabBarController = [[LeveyTabBarController alloc] initWithViewControllers:viewControllerArray imageArray:imgArr];
     //home_nav_bg
     [leveyTabBarController.tabBar setBackgroundImage:[UIImage imageNamed:@"hometarbar_bg"]];
-    //[leveyTabBarController.tabBar setBackgroundColor:UIColorFromRGB(0xffffff)];
-    //leveyTabBarController.tabBar.alpha = 0.6;
-    //[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackTranslucent animated:YES];
 	[leveyTabBarController setTabBarTransparent:NO];
-    
-    //UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:leveyTabBarController];
-    
-    //DDMenuController * rootController = [[DDMenuController alloc] initWithRootViewController:leveyTabBarController];
-    //_menuController = rootController;
-    
-    //ZLeftTableViewController * leftController = [[ZLeftTableViewController alloc] init];
-    //rootController.leftViewController = leftController;
-    
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7)
-    {
-        //self.window.frame =  CGRectMake(0,20,self.window.frame.size.width,self.window.frame.size.height-20);
-    }
+
     
     //背景色和状态栏设置
     if (IsIOS7)
@@ -123,18 +107,9 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     self.window.rootViewController = leveyTabBarController;
-    [self.window makeKeyAndVisible];
+
     
-    //***********百度云推送 START
-    [BPush setupChannel:launchOptions];
-    // 必须。参数对象必须实现(void)onMethod:(NSString*)method response:(NSDictionary*)data 方法,本示例中为 self
-    [BPush setDelegate:self];
-    [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound];
-    //***********百度云推送 END
-    
-    
-    
-    
+    NSLog(@"launchOptions == %@",launchOptions);
     //******友盟测试设备 start
 //    Class cls = NSClassFromString(@"UMANUtil");
 //    SEL deviceIDSelector = @selector(openUDIDString);
@@ -145,57 +120,67 @@
 //    NSLog(@"{\"oid\": \"%@\"}", deviceID);
     //******友盟测试设备 end
     
-    [MobClick startWithAppkey:@"537b727756240b72b602a09c" reportPolicy:SEND_INTERVAL   channelId:@"dota"];
+    [MobClick startWithAppkey:@"537b727756240b72b602a09c" reportPolicy:BATCH   channelId:@"dota"];
     NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    NSLog(@"version === %@",version);
     [MobClick setAppVersion:version];
-    //[MobClick setLogEnabled:YES];
+    [MobClick setLogEnabled:YES];
+    //[MobClick checkUpdate];
+    
+    [self.window makeKeyAndVisible];
     
     return YES;
 
 }
 
 
-//***********百度云推送 START
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
-{
-    // 必须
-    [BPush registerDeviceToken:deviceToken];
-    // 必须。可以在其它时机调用,只有在该方法返回(通过 onMethod:response:回调)绑定成功时,app 才能接收到 Push 消息。一个 app 绑定成功至少一次即可(如 果 access token 变更请重新绑定)。
-    [BPush bindChannel];
+//********************百度推送 START
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    
+    NSLog(@"frontia application:%@", deviceToken);
+
 }
-- (void) onMethod:(NSString*)method response:(NSDictionary*)data
-{
-    NSLog(@"On method:%@", method);
-    NSLog(@"data:%@", [data description]);
-    NSDictionary* res = [[NSDictionary alloc] initWithDictionary:data];
-    if ([BPushRequestMethod_Bind isEqualToString:method])
-    {
-        //        NSString *appid = [res valueForKey:BPushRequestAppIdKey];
-        //NSString *userid = [res valueForKey:BPushRequestUserIdKey];
-       // NSString *channelid = [res valueForKey:BPushRequestChannelIdKey];
-        //        NSString *requestid = [res valueForKey:BPushRequestRequestIdKey];
-        int returnCode = [[res valueForKey:BPushRequestErrorCodeKey] intValue];
-        
-        if (returnCode == BPushErrorCode_Success)
-        {
-            NSLog(@"成功绑定, 在这里发送user_id到web 服务器");
-        }
-    }
-    else if ([BPushRequestMethod_Unbind isEqualToString:method])
-    {
-        int returnCode = [[res valueForKey:BPushRequestErrorCodeKey] intValue];
-        if (returnCode == BPushErrorCode_Success) {
-            NSLog(@"绑定失败");
-        }
-    }
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    NSLog(@"frontia application:%@", error);
 }
+
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
-    // 可选
-    [BPush handleNotification:userInfo];
+    NSLog(@"frontia applciation receive Notify: %@", [userInfo description]);
+    if (application.applicationState == UIApplicationStateActive)
+    {
+        // Nothing to do if applicationState is Inactive, the iOS already displayed an alert view.
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Dota2视频"
+                                                            message:[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]
+                                                            delegate:self
+                                                            cancelButtonTitle:@"关闭"
+                                                            otherButtonTitles:nil];
+        [alertView show];
+        
+        if ([[userInfo objectForKey:@"aps"] objectForKey:@"vid"] != nil)
+        {
+            alertView.tag = [[[userInfo objectForKey:@"aps"] objectForKey:@"vid"] intValue];
+           
+            //leveyTabBarController.selectedIndex = 2;
+        }
+    }
+    [application setApplicationIconBadgeNumber:0];
+    
+    
+    //[FrontiaPush handleNotification:userInfo];
 }
-//***********百度云推送 END
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag != nil)
+    {
+        ZVideoTableViewController * Video = [[ZVideoTableViewController alloc] init];
+        Video.vid = alertView.tag;
+        [(UINavigationController *)leveyTabBarController.selectedViewController pushViewController:Video animated:YES];
+    }
+}
 
+//********************百度推送 END
 
 //********************屏幕旋转 START
 //ios5
@@ -219,6 +204,7 @@
 
 //********************屏幕旋转 END
 
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -229,6 +215,7 @@
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -237,46 +224,15 @@
 }
 
 
-//引导动画
-- (void)showBasicIntroWithBg
-{
-    EAIntroPage *page1 = [EAIntroPage page];
-    //page1.title = @"Hello world";
-    //page1.desc = @"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
-    //page1.titleImage = [UIImage imageNamed:@"gudie_1.jpg"];
-    page1.bgImage  = [UIImage imageNamed:@"gudie_1.jpg"];
-    
-    EAIntroPage *page2 = [EAIntroPage page];
-    page2.title = @"This is page 2";
-    page2.desc = @"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore.";
-    page2.bgImage = [UIImage imageNamed:@"gudie_2.jpg"];
-    
-    EAIntroPage *page3 = [EAIntroPage page];
-    page3.title = @"This is page 3";
-    page3.desc = @"Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.";
-    page3.titleImage = [UIImage imageNamed:@"femalecodertocat"];
-    
-    EAIntroView *intro = [[EAIntroView alloc] initWithFrame:[[UIScreen mainScreen] bounds] andPages:@[page1,page2,page3]];
-    intro.bgImage = [UIImage imageNamed:@"introBg"];
-    
-    [intro setDelegate:self];
-    [intro showInView:self.window animateDuration:0.0];
-}
-- (void)introDidFinish {
-    NSLog(@"Intro callback");
-    isguide = YES;
-}
 
 //应用开始时
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    NSLog(@"isguide == %d",isguide);
     
-    if (isguide == NO)
-    {
-        //[self showBasicIntroWithBg];
-    }
+    //[NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(registerForRemoteNotificationToGetToken) userInfo:nil repeats:NO];
+    
+   
     
 }
 
@@ -375,6 +331,11 @@
 
 
 #pragma mark - Application's Documents directory
+// Returns the URL to the application's Documents directory.
+- (NSURL *)applicationDocumentsDirectory
+{
+    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
 
 
 

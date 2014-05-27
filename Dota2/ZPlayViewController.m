@@ -231,7 +231,7 @@
 	[mMPayer seekTo:(long)(sld.value * mDuration)];
     curPosLbl.text = [self timeToHumanString:(long)(sld.value * mDuration)];
     //记录下播放时间
-    [self update_history];
+    //[self update_history];
 }
 
 //quanping
@@ -374,6 +374,8 @@
         [UIApplication sharedApplication].idleTimerDisabled = YES;
         
         //_videoPath = @"http://218.249.126.47/69716648D764A848D67A2E529E/0300020D0C538142B6876508EF0033CAA1B33A-3A17-F5FF-11E0-F01F102BE4CB.flv.ts";
+        
+        //_videoPath = @"rtmp://10.57.7.93:8444/live/5dfb3e94b34511e3815aac853dd1c904?deviceid=137892540571&sign=DTAES-CqnyQSm05YocyMV8Skl5IwA2-0rx5Lhx7UNeyIr3iyISqVgVajCU%3D&time=1401183792&expire=1401183812&liveid=140118379247397";
         videoURL = [NSURL URLWithString:_videoPath];
         
         [mMPayer setDataSource:videoURL];

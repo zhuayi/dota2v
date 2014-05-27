@@ -75,11 +75,6 @@
 		381D5C8F192280260098C9CD /* placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 381D5C8D192280260098C9CD /* placeholder@2x.png */; };
 		381D5C911922850C0098C9CD /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 381D5C901922850C0098C9CD /* ImageIO.framework */; };
 		381D5C93192285150098C9CD /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 381D5C92192285150098C9CD /* MapKit.framework */; };
-		38399820192DD33B00CDE392 /* libBPush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3839981F192DD33B00CDE392 /* libBPush.a */; };
-		3839982D192DD36900CDE392 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 38399823192DD36900CDE392 /* Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		3839982E192DD36900CDE392 /* GzipCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 38399826192DD36900CDE392 /* GzipCompressor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		3839982F192DD36900CDE392 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 38399828192DD36900CDE392 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		38399830192DD36900CDE392 /* OpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = 3839982A192DD36900CDE392 /* OpenUDID.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		38399833192DD5CE00CDE392 /* BPushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38399832192DD5CE00CDE392 /* BPushConfig.plist */; };
 		3845E5691920C9F000C19AC2 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3845E5681920C9F000C19AC2 /* AVFoundation.framework */; };
 		3845E56B1920C9F700C19AC2 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3845E56A1920C9F700C19AC2 /* CoreVideo.framework */; };
@@ -190,6 +185,8 @@
 		38B5B7FF192384F4003A1730 /* libopenssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38B5B7FA192384F3003A1730 /* libopenssl.a */; };
 		38B5B800192384F4003A1730 /* libVitamio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38B5B7FB192384F3003A1730 /* libVitamio.a */; };
 		38B5B801192384F4003A1730 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 38B5B7FC192384F3003A1730 /* LICENSE */; };
+		38C0AC8F1934DDEA006FA0CB /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C0AC8E1934DDEA006FA0CB /* MessageUI.framework */; };
+		38C0AC911934DE0D006FA0CB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C0AC901934DE0D006FA0CB /* CoreLocation.framework */; };
 		38C6E6201920F5FB003E3394 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C6E61F1920F5FB003E3394 /* MediaPlayer.framework */; };
 		38C6E625192102AE003E3394 /* home_nav_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38C6E624192102AE003E3394 /* home_nav_1@2x.png */; };
 		38C6E627192103D7003E3394 /* home_nav_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38C6E626192103D7003E3394 /* home_nav_bg@2x.png */; };
@@ -333,17 +330,6 @@
 		381D5C8D192280260098C9CD /* placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholder@2x.png"; sourceTree = "<group>"; };
 		381D5C901922850C0098C9CD /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		381D5C92192285150098C9CD /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		3839981E192DD33B00CDE392 /* BPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPush.h; sourceTree = "<group>"; };
-		3839981F192DD33B00CDE392 /* libBPush.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBPush.a; sourceTree = "<group>"; };
-		38399822192DD36900CDE392 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
-		38399823192DD36900CDE392 /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
-		38399824192DD36900CDE392 /* Base64Defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64Defines.h; sourceTree = "<group>"; };
-		38399825192DD36900CDE392 /* GzipCompressor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GzipCompressor.h; sourceTree = "<group>"; };
-		38399826192DD36900CDE392 /* GzipCompressor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GzipCompressor.m; sourceTree = "<group>"; };
-		38399827192DD36900CDE392 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
-		38399828192DD36900CDE392 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
-		38399829192DD36900CDE392 /* OpenUDID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenUDID.h; sourceTree = "<group>"; };
-		3839982A192DD36900CDE392 /* OpenUDID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenUDID.m; sourceTree = "<group>"; };
 		38399832192DD5CE00CDE392 /* BPushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BPushConfig.plist; sourceTree = "<group>"; };
 		3845E5681920C9F000C19AC2 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		3845E56A1920C9F700C19AC2 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
@@ -476,6 +462,8 @@
 		38B5B7FA192384F3003A1730 /* libopenssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopenssl.a; sourceTree = "<group>"; };
 		38B5B7FB192384F3003A1730 /* libVitamio.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libVitamio.a; sourceTree = "<group>"; };
 		38B5B7FC192384F3003A1730 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		38C0AC8E1934DDEA006FA0CB /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		38C0AC901934DE0D006FA0CB /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		38C6E61F1920F5FB003E3394 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		38C6E624192102AE003E3394 /* home_nav_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_nav_1@2x.png"; sourceTree = "<group>"; };
 		38C6E626192103D7003E3394 /* home_nav_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_nav_bg@2x.png"; sourceTree = "<group>"; };
@@ -540,23 +528,24 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38C0AC911934DE0D006FA0CB /* CoreLocation.framework in Frameworks */,
+				3889AD2F192B848500EC7E33 /* CoreTelephony.framework in Frameworks */,
+				380EE60A191FCCFB003B5B00 /* CoreGraphics.framework in Frameworks */,
+				3845E56F1920CA0600C19AC2 /* QuartzCore.framework in Frameworks */,
+				38C0AC8F1934DDEA006FA0CB /* MessageUI.framework in Frameworks */,
 				38142B1A193218D100F53BB9 /* libsqlite3.dylib in Frameworks */,
 				38F8B9D1192BAC8400F6EEE4 /* libUMAppNetwork_3.5.6.a in Frameworks */,
 				38B5B7E819237FD8003A1730 /* libz.dylib in Frameworks */,
 				38D69AF21922681C00265744 /* SystemConfiguration.framework in Frameworks */,
-				3889AD2F192B848500EC7E33 /* CoreTelephony.framework in Frameworks */,
 				380EE608191FCCFB003B5B00 /* Foundation.framework in Frameworks */,
 				38B5B7EC19237FED003A1730 /* libiconv.dylib in Frameworks */,
 				38B5B7EA19237FE4003A1730 /* libstdc++.dylib in Frameworks */,
 				38B5B7E619237FCE003A1730 /* libbz2.dylib in Frameworks */,
-				38399820192DD33B00CDE392 /* libBPush.a in Frameworks */,
 				380EE60C191FCCFB003B5B00 /* UIKit.framework in Frameworks */,
-				3845E56F1920CA0600C19AC2 /* QuartzCore.framework in Frameworks */,
 				38B5B7E419237FAD003A1730 /* OpenGLES.framework in Frameworks */,
 				38C6E6201920F5FB003E3394 /* MediaPlayer.framework in Frameworks */,
 				3845E56B1920C9F700C19AC2 /* CoreVideo.framework in Frameworks */,
 				3845E56D1920C9FE00C19AC2 /* CoreMedia.framework in Frameworks */,
-				380EE60A191FCCFB003B5B00 /* CoreGraphics.framework in Frameworks */,
 				38B5B800192384F4003A1730 /* libVitamio.a in Frameworks */,
 				38B5B7E219237F7B003A1730 /* AudioToolbox.framework in Frameworks */,
 				38DDAE2C193385EF0010B9F8 /* libMobClickLibrary.a in Frameworks */,
@@ -607,6 +596,8 @@
 		380EE606191FCCFB003B5B00 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				38C0AC901934DE0D006FA0CB /* CoreLocation.framework */,
+				38C0AC8E1934DDEA006FA0CB /* MessageUI.framework */,
 				38142B19193218D100F53BB9 /* libsqlite3.dylib */,
 				3889AD2E192B848500EC7E33 /* CoreTelephony.framework */,
 				38B5B7EB19237FEC003A1730 /* libiconv.dylib */,
@@ -792,8 +783,6 @@
 			isa = PBXGroup;
 			children = (
 				38142B221932264600F53BB9 /* fmdb */,
-				38399821192DD35F00CDE392 /* opensource */,
-				3839981D192DD32900CDE392 /* baidu_push */,
 				38F8B9C6192BAC7400F6EEE4 /* UM */,
 				386AFA8A1925F9C800B86B53 /* MJRefresh */,
 				386AFA771925C02000B86B53 /* EGOTableViewPullRefresh */,
@@ -905,31 +894,6 @@
 				381D5C7D19227EDA0098C9CD /* UIImageView+WebCache.m */,
 			);
 			path = SDWebImage;
-			sourceTree = "<group>";
-		};
-		3839981D192DD32900CDE392 /* baidu_push */ = {
-			isa = PBXGroup;
-			children = (
-				3839981E192DD33B00CDE392 /* BPush.h */,
-				3839981F192DD33B00CDE392 /* libBPush.a */,
-			);
-			name = baidu_push;
-			sourceTree = "<group>";
-		};
-		38399821192DD35F00CDE392 /* opensource */ = {
-			isa = PBXGroup;
-			children = (
-				38399822192DD36900CDE392 /* Base64.h */,
-				38399823192DD36900CDE392 /* Base64.m */,
-				38399824192DD36900CDE392 /* Base64Defines.h */,
-				38399825192DD36900CDE392 /* GzipCompressor.h */,
-				38399826192DD36900CDE392 /* GzipCompressor.m */,
-				38399827192DD36900CDE392 /* JSONKit.h */,
-				38399828192DD36900CDE392 /* JSONKit.m */,
-				38399829192DD36900CDE392 /* OpenUDID.h */,
-				3839982A192DD36900CDE392 /* OpenUDID.m */,
-			);
-			name = opensource;
 			sourceTree = "<group>";
 		};
 		3855CAC4192781920019187E /* play */ = {
@@ -1379,7 +1343,6 @@
 				386AFA981925F9C900B86B53 /* MJRefreshFooterView.m in Sources */,
 				381D5C7E19227EDA0098C9CD /* MKAnnotationView+WebCache.m in Sources */,
 				380EE616191FCCFB003B5B00 /* main.m in Sources */,
-				3839982F192DD36900CDE392 /* JSONKit.m in Sources */,
 				38D69AE7192266DE00265744 /* ASIDataCompressor.m in Sources */,
 				3818B64519249E9200CABFB2 /* EAIntroView.m in Sources */,
 				380EE61A191FCCFB003B5B00 /* ZAppDelegate.m in Sources */,
@@ -1412,19 +1375,16 @@
 				381D5C8619227EDA0098C9CD /* SDWebImagePrefetcher.m in Sources */,
 				381D5C8A19227EDA0098C9CD /* UIImage+WebP.m in Sources */,
 				381D5C8519227EDA0098C9CD /* SDWebImageManager.m in Sources */,
-				3839982D192DD36900CDE392 /* Base64.m in Sources */,
 				386AFA961925F9C900B86B53 /* MJRefreshBaseView.m in Sources */,
 				38B5B7DF19236EC0003A1730 /* LeveyTabBar.m in Sources */,
 				381D5C7F19227EDA0098C9CD /* NSData+ImageContentType.m in Sources */,
 				380EE645191FCDC2003B5B00 /* ZTabBarViewController.m in Sources */,
-				3839982E192DD36900CDE392 /* GzipCompressor.m in Sources */,
 				38142B311932264600F53BB9 /* FMDatabaseQueue.m in Sources */,
 				380EE664191FD720003B5B00 /* ZFindTableViewController.m in Sources */,
 				380EE66B191FD7BE003B5B00 /* ZMoreTableViewController.m in Sources */,
 				38142B211932262400F53BB9 /* DbVideo.m in Sources */,
 				386AFA991925F9C900B86B53 /* MJRefreshHeaderView.m in Sources */,
 				381D5C8B19227EDA0098C9CD /* UIImageView+WebCache.m in Sources */,
-				38399830192DD36900CDE392 /* OpenUDID.m in Sources */,
 				38F8B9DE192BAE1800F6EEE4 /* UMTableViewController.m in Sources */,
 				38142B321932264600F53BB9 /* FMResultSet.m in Sources */,
 				38D4578C1924FCAA00B5A05D /* ZListTableViewController.m in Sources */,
@@ -1548,8 +1508,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Miao Xu (Q22LCUB777)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Miao Xu (Q22LCUB777)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Dota2",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Dota2/Doat2-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Dota2/Doat2-Info.plist";
@@ -1561,9 +1525,9 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Dota2",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "45572C75-9C17-4C66-85AE-C995D84C96DF";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
@@ -1575,8 +1539,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Miao Xu (Q22LCUB777)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Miao Xu (Q22LCUB777)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Dota2",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Dota2/Doat2-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Dota2/Doat2-Info.plist";
@@ -1588,9 +1556,9 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Dota2",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "45572C75-9C17-4C66-85AE-C995D84C96DF";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;

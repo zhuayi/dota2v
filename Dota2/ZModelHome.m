@@ -16,12 +16,7 @@
 - (void)play:(UITapGestureRecognizer *)gesture
 {
     ZVideoTableViewController * Video = [[ZVideoTableViewController alloc] init];
-    
-    //NSLog(@"gesture.view.tag == %@",gesture.view.tag);
     Video.vid = gesture.view.tag;
-    
-    //[delegate.nava]
-    //[self.navigationController pushViewController:Video animated:YES];
     
 }
 
@@ -47,7 +42,7 @@
     {
         //点击事件
         UITapGestureRecognizer * tapGesture=[[UITapGestureRecognizer alloc]initWithTarget:delegate action:selectors];
-        NSLog(@"delegate======%@",delegate);
+        //NSLog(@"delegate======%@",delegate);
         //tapGesture.delegate = delegate;
         //[UIFont]
         UILabel  * labletitle = [[UILabel alloc] init];
@@ -75,7 +70,7 @@
         }
         
         //懒加载图片
-        NSLog(@"pic === %@",pic);
+        //NSLog(@"pic === %@",pic);
         
         SDWebImageManager * manager = [SDWebImageManager sharedManager];
         [manager downloadWithURL:[NSURL URLWithString:pic]

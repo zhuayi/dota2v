@@ -119,7 +119,7 @@
 {
     ZListTableViewController * list = [[ZListTableViewController alloc] init];
     
-    NSLog(@"gesture.view.tag%d",gesture.view.tag);
+    //NSLog(@"gesture.view.tag%d",gesture.view.tag);
     list.HeroId = gesture.view.tag;
     
     [self.navigationController pushViewController:list animated:YES];
@@ -222,7 +222,7 @@
     }
     else if ([indexPath section] == 1 || [indexPath section] == 3 || [indexPath section] == 7  || [indexPath section] == 9 )
     {
-        NSLog(@"=====加载视频列表");
+        //NSLog(@"=====加载视频列表");
         
         ZListTableViewController * list = [[ZListTableViewController alloc] init];
         

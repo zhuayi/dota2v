@@ -37,7 +37,9 @@
     [super viewDidLoad];
     
     _baseControllerDelegate = self;
+
 }
+
 
 
 - (void) doneloadingReloadTableData
@@ -96,6 +98,7 @@
 
 -(void)viewWillDisappear:(BOOL)animated
 {
+    [playbox removePlayViewbox];
     [self.leveyTabBarController hidesTabBar:NO animated:YES];
 }
 
