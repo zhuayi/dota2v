@@ -17,6 +17,7 @@
 #import "EAIntroView.h"
 #import "ZVideoTableViewController.h"
 #import "MobClick.h"
+#import "ZFuntion.h"
 //友盟
 #import "UMTableViewController.h"
 
@@ -127,18 +128,48 @@
     [MobClick setLogEnabled:YES];
     //[MobClick checkUpdate];
     
+    //推送
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+    
     [self.window makeKeyAndVisible];
+    
+    //[self get_device_info:@"aaaaa"];
     
     return YES;
 
 }
 
 
-//********************百度推送 START
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+//********************推送 START
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
     
-    NSLog(@"frontia application:%@", deviceToken);
+    NSString* token = [NSString stringWithFormat:@"%@",deviceToken];
+    NSMutableDictionary * device_info = [ZFuntion get_device_info_list];
+    [device_info setObject:token forKey:@"device_token"];
+    
+    NSDictionary * post_data = [[NSDictionary alloc] initWithObjectsAndKeys:[ZFuntion json_decode:device_info],@"post_data", nil];
+    
+    ZFuntion * zfunction = [[ZFuntion alloc] init];
+    [zfunction push_device_info_to_server:PUSH_DEVICES_INFO post_data:post_data delegate:self];
+    
+    NSLog(@"device_info === %@",post_data);
 
+}
+- (void)requestFailed:(ASIHTTPRequest *)request
+{
+    NSError *error = [request error];
+    
+    if (error)
+    {
+        NSLog(@"error === %@",error);
+    }
+}
+- ( void )requestFinished:( ASIHTTPRequest *)request
+{
+    
+    NSString * responseString = [request responseString];
+    NSLog(@"responseString === %@",responseString);
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {

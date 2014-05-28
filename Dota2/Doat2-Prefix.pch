@@ -50,5 +50,8 @@
     //根据英雄ID获取视频列表
     static NSString * const GET_LIST_BY_HEROID = @"http://www.dota2v.com/interface/video/get_list_by_hero.php?job_id=#classid#";
 
+    //推送设备信息接口
+    static NSString * const PUSH_DEVICES_INFO = @"http://dota2.0611.cc/push/insert_device_info.json";
+
 #endif
 
